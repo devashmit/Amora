@@ -73,7 +73,7 @@ export const LetterCanvas: React.FC<LetterCanvasProps> = ({
   return (
     <div
       style={{ color: inkColor }}
-      className={`relative w-full max-w-[650px] aspect-[4/5] md:aspect-[3/4] shadow-2xl rounded-sm p-8 md:p-12 transition-all duration-500 overflow-hidden select-none paper-${paperStyle} ${getBorderClass()}`}
+      className={`relative w-full max-w-[650px] aspect-[4/5] md:aspect-[3/4] shadow-2xl rounded-sm pt-12 pb-8 px-8 md:pt-16 md:pb-12 md:px-12 transition-all duration-500 overflow-hidden select-none paper-${paperStyle} ${getBorderClass()}`}
     >
       {/* Texture overlays */}
       <div className="absolute inset-0 opacity-15 pointer-events-none mix-blend-multiply bg-cover bg-center" />
@@ -92,7 +92,7 @@ export const LetterCanvas: React.FC<LetterCanvasProps> = ({
       {/* Content wrapper */}
       <div className={`h-full flex flex-col justify-between relative z-10 ${getFontClass()}`}>
         {/* Recipient Field */}
-        <div className="mb-4">
+        <div className="mb-4 pt-1">
           <span className="text-sm md:text-base opacity-75 mr-2">Dearest,</span>
           {readOnly ? (
             <span className="text-xl md:text-2xl font-semibold border-b border-transparent">{toName || 'Someone Special'}</span>
@@ -102,7 +102,7 @@ export const LetterCanvas: React.FC<LetterCanvasProps> = ({
               placeholder="Recipient name"
               value={toName}
               onChange={(e) => setToName?.(e.target.value)}
-              className="bg-transparent border-b border-current/25 hover:border-current/55 focus:border-current focus:outline-none text-xl md:text-2xl font-semibold w-[200px] py-0 transition-colors"
+              className="bg-transparent border-b border-current/25 hover:border-current/55 focus:border-current focus:outline-none text-xl md:text-2xl font-semibold w-[200px] py-1 transition-colors"
             />
           )}
         </div>

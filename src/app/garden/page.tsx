@@ -17,11 +17,12 @@ export default async function GardenPage() {
     .limit(30);
 
   return (
-    <main className="min-h-screen bg-amora-cream text-amora-ink font-ui flex flex-col justify-between">
+    <main className="min-h-screen text-amora-ink font-ui flex flex-col justify-between">
       {/* Header */}
       <header className="border-b border-amora-ink/5 bg-white/70 backdrop-blur px-6 py-4 flex items-center justify-between sticky top-0 z-40">
-        <Link href="/" className="flex items-center gap-2 font-heading font-bold text-xl tracking-widest uppercase hover:text-amora-rose transition-colors">
-          🌸 Amora
+        <Link href="/" className="flex items-center gap-3 font-heading font-bold text-xl tracking-widest uppercase hover:text-amora-rose transition-colors">
+          <img src="/logo.svg" alt="Amora Logo" className="w-8 h-8" />
+          <span>Amora</span>
         </Link>
         <Link href="/editor">
           <Button variant="primary" size="sm">

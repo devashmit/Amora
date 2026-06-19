@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <!-- Premium Gradient definitions -->
+    <linearGradient id="roseGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D4879C" />
+      <stop offset="100%" stop-color="#8B3A3A" />
+    </linearGradient>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5E6D3" />
+      <stop offset="100%" stop-color="#B8976A" />
+    </linearGradient>
+    <filter id="softShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <drop-shadow dx="0" dy="2" stdDeviation="2" flood-color="#2C1810" flood-opacity="0.15" />
+    </filter>
+  </defs>
+
+  <!-- Background Heart Card Outline -->
+  <path 
+    d="M50 88.5 C40 76.5 12 55.5 12 34 C12 20.2 23.2 9 37 9 C44.8 9 50 15 50 15 C50 15 55.2 9 63 9 C76.8 9 88 20.2 88 34 C88 55.5 60 76.5 50 88.5 Z" 
+    fill="url(#roseGradient)" 
+    filter="url(#softShadow)"
+  />
+
+  <!-- Intertwining Flower Stem/Symbolism -->
+  <path 
+    d="M38 52 C45 48 55 48 62 52 C58 45 42 45 38 52 Z" 
+    fill="url(#goldGradient)" 
+    opacity="0.9"
+  />
+
+  <!-- Five-petal flower details in the center -->
+  <g transform="translate(50, 42) scale(0.9)" filter="url(#softShadow)">
+    <!-- Central Pistil -->
+    <circle cx="0" cy="0" r="4.5" fill="#F5E6D3" />
+    
+    <!-- Petals -->
+    <path d="M0 -4 C-4 -12 4 -12 0 -4 Z" fill="#FDF6EC" transform="rotate(0)" />
+    <path d="M0 -4 C-4 -12 4 -12 0 -4 Z" fill="#FDF6EC" transform="rotate(72)" />
+    <path d="M0 -4 C-4 -12 4 -12 0 -4 Z" fill="#FDF6EC" transform="rotate(144)" />
+    <path d="M0 -4 C-4 -12 4 -12 0 -4 Z" fill="#FDF6EC" transform="rotate(216)" />
+    <path d="M0 -4 C-4 -12 4 -12 0 -4 Z" fill="#FDF6EC" transform="rotate(288)" />
+    
+    <!-- Inner highlights -->
+    <circle cx="0" cy="0" r="2.5" fill="#B8976A" />
+  </g>
+</svg>

@@ -54,11 +54,12 @@ export default async function LetterPage({ params }: Params) {
   }
 
   return (
-    <main className="min-h-screen bg-amora-cream text-amora-ink font-ui flex flex-col items-center justify-between p-6">
+    <main className="min-h-screen text-amora-ink font-ui flex flex-col items-center justify-between p-6">
       {/* Logo */}
       <header className="py-4 text-center">
-        <Link href="/" className="font-heading font-bold text-xl tracking-widest uppercase hover:text-amora-rose transition-colors">
-          🌸 Amora
+        <Link href="/" className="flex items-center gap-3 font-heading font-bold text-xl tracking-widest uppercase hover:text-amora-rose transition-colors">
+          <img src="/logo.svg" alt="Amora Logo" className="w-8 h-8" />
+          <span>Amora</span>
         </Link>
       </header>
 

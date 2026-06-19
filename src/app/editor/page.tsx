@@ -45,11 +45,11 @@ export default function EditorPage() {
   };
 
   return (
-    <main className="min-height-screen w-full bg-amora-cream text-amora-ink font-ui flex flex-col">
+    <main className="min-height-screen w-full text-amora-ink font-ui flex flex-col">
       {/* Header */}
       <header className="border-b border-amora-ink/5 bg-white/70 backdrop-blur px-6 py-4 flex items-center justify-between z-40">
-        <div className="flex items-center gap-2">
-          <span className="text-2xl">🌸</span>
+        <div className="flex items-center gap-3">
+          <img src="/logo.svg" alt="Amora Logo" className="w-8 h-8" />
           <span className="font-heading font-bold text-xl tracking-wider uppercase text-amora-ink">Amora</span>
         </div>
         <div className="flex items-center gap-3">

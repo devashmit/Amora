@@ -15,10 +15,17 @@
 
 body {
   color: var(--foreground);
-  background: var(--background);
+  background: radial-gradient(circle at center, #fdfbf7 0%, #f7eff0 60%, #eedbde 100%);
   font-family: var(--font-ui);
   min-height: 100vh;
   overflow-x: hidden;
+}
+
+/* Premium glassmorphic containers */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 @layer utilities {

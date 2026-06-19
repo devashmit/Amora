@@ -5,14 +5,14 @@ import { Button } from '@/components/ui/Button';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-amora-cream text-amora-ink font-ui flex flex-col justify-between relative overflow-hidden">
+    <main className="min-h-screen text-amora-ink font-ui flex flex-col justify-between relative overflow-hidden">
       {/* Background Petal Rain */}
       <PetalRain />
 
       {/* Navbar Header */}
       <header className="max-w-7xl mx-auto w-full px-6 py-6 flex justify-between items-center z-10">
-        <div className="flex items-center gap-2">
-          <span className="text-2xl">🌸</span>
+        <div className="flex items-center gap-3">
+          <img src="/logo.svg" alt="Amora Logo" className="w-8 h-8" />
           <span className="font-heading font-bold text-xl tracking-widest uppercase">Amora</span>
         </div>
         <Link href="/garden" className="text-xs font-semibold uppercase tracking-wider hover:text-amora-rose transition-colors">

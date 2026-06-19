@@ -33,7 +33,7 @@ export default function SharePage() {
   )}`;
 
   return (
-    <main className="min-h-screen bg-amora-cream text-amora-ink font-ui flex flex-col justify-center items-center p-6 md:p-12">
+    <main className="min-h-screen text-amora-ink font-ui flex flex-col justify-center items-center p-6 md:p-12">
       <div className="max-w-md w-full text-center space-y-8 bg-white p-8 rounded-3xl shadow-xl border border-amora-ink/5">
         <div className="space-y-2">
           <span className="text-4xl">✉️</span>
