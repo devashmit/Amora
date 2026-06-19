@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Dancing+Script:wght@400..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #fdf6ec; /* Default to cream background */
+  --foreground: #2c1810; /* Default to ink */
+  
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-handwriting: 'Dancing Script', cursive;
+  --font-ui: 'Lato', sans-serif;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-ui);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* Paper styles & textures */
+  .paper-parchment {
+    background-color: #f5e6d3;
+    background-image: url('/textures/parchment.png');
+    background-blend-mode: multiply;
+  }
+  
+  .paper-blush {
+    background-color: #f9e8e8;
+    background-image: url('/textures/watercolor-wash.png');
+    background-blend-mode: multiply;
+  }
+  
+  .paper-cream {
+    background-color: #fdfbf5;
+    background-image: url('/textures/linen.png');
+    background-blend-mode: multiply;
+  }
+  
+  .paper-navy {
+    background-color: #1a2744;
+    color: #e8dcc8;
+  }
+  
+  .paper-ivory {
+    background-color: #fffff0;
+    background-image: url('/textures/noise.png');
+    background-blend-mode: multiply;
+  }
+  
+  .paper-dark {
+    background-color: #1a0f0a;
+    color: #c9a96e;
+  }
+}
