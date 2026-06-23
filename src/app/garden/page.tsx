@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { createClient } from '@/lib/supabase/server';
 import { Button } from '@/components/ui/Button';
+import { Mail, Sprout, Eye, Heart, ArrowRight } from 'lucide-react';
 
 export const revalidate = 60; // Incremental Static Regeneration revalidation time in seconds
 
@@ -25,8 +26,9 @@ export default async function GardenPage() {
           <span>Amora</span>
         </Link>
         <Link href="/editor">
-          <Button variant="primary" size="sm">
-            Write a Letter ✉
+          <Button variant="primary" size="sm" className="flex items-center gap-1.5">
+            <span>Write a Letter</span>
+            <Mail className="w-4 h-4" />
           </Button>
         </Link>
       </header>
@@ -42,7 +44,7 @@ export default async function GardenPage() {
 
         {error || !letters || letters.length === 0 ? (
           <div className="text-center py-20 bg-white/40 border border-dashed border-amora-ink/10 rounded-2xl space-y-3">
-            <span className="text-4xl block">🌿</span>
+            <span className="flex justify-center"><Sprout className="w-12 h-12 text-amora-gold" /></span>
             <h3 className="font-heading text-xl font-bold">The garden is empty here</h3>
             <p className="text-xs text-amora-ink/50 max-w-xs mx-auto">
               Be the first to share a beautiful flower-sealed letter in the public garden gallery!
@@ -83,13 +85,20 @@ export default async function GardenPage() {
                   {/* Footer Metrics */}
                   <div className="flex justify-between items-center text-xs text-amora-ink/50 font-medium">
                     <div className="flex items-center gap-3">
-                      <span title="Views">👁️ {letter.view_count || 0}</span>
-                      <span title="Reactions">💖 {totalReactions}</span>
+                      <span title="Views" className="flex items-center gap-1">
+                        <Eye className="w-3.5 h-3.5 text-amora-ink/40" />
+                        <span>{letter.view_count || 0}</span>
+                      </span>
+                      <span title="Reactions" className="flex items-center gap-1">
+                        <Heart className="w-3.5 h-3.5 text-amora-rose/65" />
+                        <span>{totalReactions}</span>
+                      </span>
                     </div>
 
                     <Link href={`/letter/${letter.id}`}>
-                      <span className="text-amora-rose hover:underline font-semibold cursor-pointer">
-                        Open Letter ➔
+                      <span className="text-amora-rose hover:underline font-semibold cursor-pointer flex items-center gap-1">
+                        <span>Open Letter</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
                       </span>
                     </Link>
                   </div>

@@ -10,7 +10,7 @@
       <stop offset="100%" stop-color="#B8976A" />
     </linearGradient>
     <filter id="softShadow" x="-10%" y="-10%" width="120%" height="120%">
-      <drop-shadow dx="0" dy="2" stdDeviation="2" flood-color="#2C1810" flood-opacity="0.15" />
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#2C1810" flood-opacity="0.15" />
     </filter>
   </defs>
 
