@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { HeartQRCode } from '@/components/share/HeartQRCode';
 import { Button } from '@/components/ui/Button';
+import { Mail, Check } from 'lucide-react';
 
 export default function SharePage() {
   const params = useParams();
@@ -35,8 +36,8 @@ export default function SharePage() {
   return (
     <main className="min-h-screen text-amora-ink font-ui flex flex-col justify-center items-center p-6 md:p-12">
       <div className="max-w-md w-full text-center space-y-8 bg-white p-8 rounded-3xl shadow-xl border border-amora-ink/5">
-        <div className="space-y-2">
-          <span className="text-4xl">✉️</span>
+        <div className="space-y-2 flex flex-col items-center">
+          <Mail className="w-12 h-12 text-amora-rose mb-1" />
           <h1 className="font-heading text-3xl font-bold tracking-wide">Your Letter is Sealed</h1>
           <p className="text-sm text-amora-ink/60">
             Share this QR code or copy the secret link. When opened, the recipient will experience a cinematic reveal.
@@ -53,9 +54,14 @@ export default function SharePage() {
               onClick={handleCopyLink}
               variant="secondary"
               size="sm"
-              className="py-1 px-4 text-xs font-bold shrink-0"
+              className="py-1 px-4 text-xs font-bold shrink-0 flex items-center gap-1"
             >
-              {copied ? 'Copied! ✨' : 'Copy'}
+              {copied ? (
+                <>
+                  <span>Copied</span>
+                  <Check className="w-3.5 h-3.5 text-green-600" />
+                </>
+              ) : 'Copy'}
             </Button>
           </div>
 

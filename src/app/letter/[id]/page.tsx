@@ -5,6 +5,7 @@ import { Metadata } from 'next';
 import { createClient } from '@/lib/supabase/server';
 import { EnvelopeReveal } from '@/components/letter/EnvelopeReveal';
 import { ReactionBar } from '@/components/letter/ReactionBar';
+import { isSupabaseConfigured, getLetterLocal, incrementViewLocal } from '@/lib/localDb';
 
 interface Params {
   params: {
@@ -13,44 +14,101 @@ interface Params {
 }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
-  const supabase = createClient();
-  const { data: letter } = await supabase
-    .from('letters')
-    .select('to_name, from_name')
-    .eq('id', params.id)
-    .single();
+  const { id } = params;
 
-  if (!letter) {
-    return {
-      title: 'Letter not found | Amora',
-    };
+  if (!isSupabaseConfigured()) {
+    const localLetter = getLetterLocal(id);
+    if (localLetter) {
+      return {
+        title: `A digital bouquet for ${localLetter.to_name} | Amora`,
+        description: `A custom flower-sealed letter created with love by ${localLetter.from_name}.`,
+      };
+    }
+    return { title: 'Letter not found | Amora' };
   }
 
-  return {
-    title: `A digital bouquet for ${letter.to_name} | Amora`,
-    description: `A custom flower-sealed letter created with love by ${letter.from_name}.`,
-  };
+  try {
+    const supabase = createClient();
+    const { data: letter } = await supabase
+      .from('letters')
+      .select('to_name, from_name')
+      .eq('id', id)
+      .single();
+
+    if (!letter) {
+      // Check local DB
+      const localLetter = getLetterLocal(id);
+      if (localLetter) {
+        return {
+          title: `A digital bouquet for ${localLetter.to_name} | Amora`,
+          description: `A custom flower-sealed letter created with love by ${localLetter.from_name}.`,
+        };
+      }
+      return {
+        title: 'Letter not found | Amora',
+      };
+    }
+
+    return {
+      title: `A digital bouquet for ${letter.to_name} | Amora`,
+      description: `A custom flower-sealed letter created with love by ${letter.from_name}.`,
+    };
+  } catch {
+    const localLetter = getLetterLocal(id);
+    if (localLetter) {
+      return {
+        title: `A digital bouquet for ${localLetter.to_name} | Amora`,
+        description: `A custom flower-sealed letter created with love by ${localLetter.from_name}.`,
+      };
+    }
+    return { title: 'Letter not found | Amora' };
+  }
 }
 
 export default async function LetterPage({ params }: Params) {
-  const supabase = createClient();
-  
-  const { data: letter, error } = await supabase
-    .from('letters')
-    .select('*')
-    .eq('id', params.id)
-    .single();
+  const { id } = params;
+  let letter = null;
 
-  if (error || !letter) {
-    notFound();
-  }
+  if (!isSupabaseConfigured()) {
+    letter = getLetterLocal(id);
+    if (!letter) {
+      notFound();
+    }
+    incrementViewLocal(id);
+  } else {
+    try {
+      const supabase = createClient();
+      const { data, error } = await supabase
+        .from('letters')
+        .select('*')
+        .eq('id', id)
+        .single();
 
-  // Increment view count securely via database function
-  const { error: viewError } = await supabase.rpc('increment_view', {
-    letter_id: params.id,
-  });
-  if (viewError) {
-    console.error('Failed to increment view:', viewError);
+      if (error || !data) {
+        // Try local DB fallback
+        letter = getLetterLocal(id);
+        if (!letter) {
+          notFound();
+        }
+        incrementViewLocal(id);
+      } else {
+        letter = data;
+        // Increment view count securely via database function
+        const { error: viewError } = await supabase.rpc('increment_view', {
+          letter_id: id,
+        });
+        if (viewError) {
+          console.error('Failed to increment view:', viewError);
+        }
+      }
+    } catch (err) {
+      console.warn('Supabase view connection failed, checking local DB:', err);
+      letter = getLetterLocal(id);
+      if (!letter) {
+        notFound();
+      }
+      incrementViewLocal(id);
+    }
   }
 
   return (
