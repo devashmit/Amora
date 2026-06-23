@@ -109,7 +109,8 @@ export const EnvelopeSealPreview: React.FC<EnvelopeSealPreviewProps> = ({
       scale: 0.9,
       opacity: 1,
       rotate: 0,
-      transition: { duration: 1.4, ease: [0.25, 1, 0.5, 1] }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      transition: { duration: 1.4, ease: [0.25, 1, 0.5, 1] as any }
     },
     closing: { y: 190, scale: 0.9 },
     sealed: { y: 190, scale: 0.9 }
@@ -121,7 +122,8 @@ export const EnvelopeSealPreview: React.FC<EnvelopeSealPreviewProps> = ({
     closing: {
       rotateX: 180,
       zIndex: 35,
-      transition: { duration: 0.9, ease: [0.65, 0, 0.35, 1] }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      transition: { duration: 0.9, ease: [0.65, 0, 0.35, 1] as any }
     },
     sealed: { rotateX: 180, zIndex: 35 }
   };
@@ -134,7 +136,8 @@ export const EnvelopeSealPreview: React.FC<EnvelopeSealPreviewProps> = ({
       scale: 1,
       opacity: 1,
       y: 0,
-      transition: { type: 'spring', stiffness: 220, damping: 12, delay: 0.1 }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      transition: { type: 'spring', stiffness: 220, damping: 12, delay: 0.1 } as any
     }
   };
 

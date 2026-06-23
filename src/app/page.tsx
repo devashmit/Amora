@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { PetalRain } from '@/components/landing/PetalRain';
 import { Button } from '@/components/ui/Button';
-import { Sparkles, PenTool, Flower, Mail, BookOpen } from 'lucide-react';
+import { Sparkles, PenTool, Flower, Mail } from 'lucide-react';
 
 export default function Home() {
   return (

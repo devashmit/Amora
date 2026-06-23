@@ -21,6 +21,7 @@ interface LetterCanvasProps {
   setSelectedId: (id: number | null) => void;
   decorations: Decoration;
   readOnly?: boolean;
+  bringToFront?: (index: number) => void;
 }
 
 export const LetterCanvas: React.FC<LetterCanvasProps> = ({
@@ -41,6 +42,7 @@ export const LetterCanvas: React.FC<LetterCanvasProps> = ({
   setSelectedId,
   decorations,
   readOnly = false,
+  bringToFront,
 }) => {
   
   // Set correct CSS font family class
@@ -174,6 +176,7 @@ export const LetterCanvas: React.FC<LetterCanvasProps> = ({
         selectedId={selectedId}
         setSelectedId={setSelectedId}
         readOnly={readOnly}
+        bringToFront={bringToFront}
       />
     </div>
   );

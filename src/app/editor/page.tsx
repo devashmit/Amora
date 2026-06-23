@@ -171,6 +171,7 @@ export default function EditorPage() {
                   selectedId={editor.selectedId}
                   setSelectedId={editor.setSelectedId}
                   decorations={editor.decorations}
+                  bringToFront={editor.bringToFront}
                 />
                 {errorMessage && (
                   <p className="text-red-500 text-xs mt-2 text-center bg-red-50 border border-red-200 rounded-lg px-4 py-2">

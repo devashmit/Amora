@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PaperStyle, FontFamily, Decoration, StickerPlacement } from '@/types';
 import { LetterCanvas } from '../editor/LetterCanvas';
-import { Mail, Sparkles } from 'lucide-react';
+import { Mail } from 'lucide-react';
 import { ENVELOPE_COLORS } from '../editor/EnvelopeSealPreview';
 import { STICKERS } from '@/lib/stickers';
 
@@ -48,7 +48,8 @@ export const EnvelopeReveal: React.FC<EnvelopeRevealProps> = ({
     open: {
       rotateX: -180,
       zIndex: 10,
-      transition: { type: 'spring', stiffness: 45, damping: 14, delay: 0.3 }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      transition: { type: 'spring', stiffness: 45, damping: 14, delay: 0.3 } as any
     },
   };
 
@@ -58,7 +59,8 @@ export const EnvelopeReveal: React.FC<EnvelopeRevealProps> = ({
       y: -130, // 60-70% visible above envelope
       scale: 0.95,
       rotate: -0.5,
-      transition: { type: 'spring', stiffness: 50, damping: 13, delay: 1.0 }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      transition: { type: 'spring', stiffness: 50, damping: 13, delay: 1.0 } as any
     },
   };
 
