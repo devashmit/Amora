@@ -16,6 +16,7 @@ export interface Decoration {
   seal_position?: 'bottom-center' | 'bottom-right';
   border_style?: 'none' | 'simple' | 'ornate' | 'floral';
   postage_stamp?: boolean;
+  envelope_style?: 'classic' | 'vintage' | 'royal' | 'blossom';
 }
 
 export interface Letter {
