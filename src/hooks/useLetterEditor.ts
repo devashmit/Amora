@@ -18,6 +18,7 @@ export const useLetterEditor = (initialData?: Partial<CreateLetterPayload>) => {
     seal_position: 'bottom-center',
     border_style: 'none',
     postage_stamp: false,
+    envelope_style: 'classic',
   });
 
   const getPayload = (): CreateLetterPayload => ({

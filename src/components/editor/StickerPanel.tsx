@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { STICKERS } from '@/lib/stickers';
+import { Flower } from 'lucide-react';
 
 interface StickerPanelProps {
   onAddSticker: (stickerId: string) => void;
@@ -9,9 +10,9 @@ export const StickerPanel: React.FC<StickerPanelProps> = ({ onAddSticker }) => {
   const [activeCategory, setActiveCategory] = useState<string>('all');
 
   const categories = [
-    { id: 'all', name: 'All Flowers' },
-    { id: 'single', name: 'Singles' },
+    { id: 'all', name: 'All Bouquets' },
     { id: 'bouquet', name: 'Bouquets' },
+    { id: 'single', name: 'Singles' },
     { id: 'botanical', name: 'Botanicals' },
     { id: 'dried', name: 'Dried' },
     { id: 'branch', name: 'Branches' },
@@ -24,8 +25,11 @@ export const StickerPanel: React.FC<StickerPanelProps> = ({ onAddSticker }) => {
   return (
     <div className="space-y-4 font-ui h-full flex flex-col">
       <div className="space-y-1">
-        <h3 className="text-sm font-semibold tracking-wider text-amora-ink/80 uppercase">4. Add Flower Stickers</h3>
-        <p className="text-[11px] text-amora-ink/50">Click on a flower to add it, then drag, rotate, or resize it on the canvas.</p>
+        <h3 className="text-sm font-semibold tracking-wider text-amora-ink/80 uppercase flex items-center gap-1.5">
+          <Flower className="w-4 h-4 text-amora-gold" />
+          <span>4. Add Miniature Bouquets</span>
+        </h3>
+        <p className="text-[11px] text-amora-ink/50">Click on a bouquet to add it, then drag, rotate, or resize it on the canvas.</p>
       </div>
 
       {/* Categories Scroller */}
@@ -53,9 +57,10 @@ export const StickerPanel: React.FC<StickerPanelProps> = ({ onAddSticker }) => {
             onClick={() => onAddSticker(sticker.id)}
             className="aspect-square bg-white rounded-lg border border-amora-ink/5 flex flex-col items-center justify-center p-2 transition-all duration-300 hover:scale-105 hover:shadow-md active:scale-95 group"
           >
-            <span className="text-3xl filter drop-shadow-sm group-hover:animate-wiggle duration-1000">
-              {sticker.filename}
-            </span>
+            <div 
+              className="w-10 h-10 filter drop-shadow-sm group-hover:animate-wiggle duration-1000"
+              dangerouslySetInnerHTML={{ __html: sticker.svgMarkup }}
+            />
             <span className="text-[9px] text-amora-ink/65 truncate max-w-full mt-1.5 font-medium leading-none text-center">
               {sticker.name}
             </span>

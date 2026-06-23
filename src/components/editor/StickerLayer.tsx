@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { StickerPlacement } from '@/types';
 import { STICKERS } from '@/lib/stickers';
+import { X, RotateCw, Maximize2 } from 'lucide-react';
 
 interface StickerLayerProps {
   stickers: StickerPlacement[];
@@ -44,6 +45,12 @@ export const StickerLayer: React.FC<StickerLayerProps> = ({
 
   const handlePointerDown = (e: React.PointerEvent, index: number) => {
     if (readOnly) return;
+    
+    const target = e.target as HTMLElement;
+    if (target.closest('button') || target.closest('[data-handle]')) {
+      return; // Ignore wrapper drag if clicking handles/buttons
+    }
+    
     e.stopPropagation();
     setSelectedId(index);
 
@@ -59,8 +66,7 @@ export const StickerLayer: React.FC<StickerLayerProps> = ({
       startTop: sticker.y,
     });
     
-    // Capture pointer
-    (e.target as HTMLElement).setPointerCapture(e.pointerId);
+    containerRef.current?.setPointerCapture(e.pointerId);
   };
 
   const handlePointerMove = (e: React.PointerEvent) => {
@@ -74,7 +80,6 @@ export const StickerLayer: React.FC<StickerLayerProps> = ({
       const deltaX = ((e.clientX - startX) / rect.width) * 100;
       const deltaY = ((e.clientY - startY) / rect.height) * 100;
 
-      // Keep within bounds 0-100
       const newX = Math.max(0, Math.min(100, startLeft + deltaX));
       const newY = Math.max(0, Math.min(100, startTop + deltaY));
 
@@ -91,23 +96,24 @@ export const StickerLayer: React.FC<StickerLayerProps> = ({
     if (scaleState !== null) {
       const { index, startY, startScale } = scaleState;
       const deltaY = startY - e.clientY;
-      const scale = Math.max(0.5, Math.min(3.0, startScale + deltaY * 0.01));
+      const scale = Math.max(0.5, Math.min(3.0, startScale + deltaY * 0.015));
       updateSticker(index, { scale });
     }
   };
 
   const handlePointerUp = (e: React.PointerEvent) => {
-    if (dragState !== null) {
-      (e.target as HTMLElement).releasePointerCapture(e.pointerId);
-      setDragState(null);
-    }
+    try {
+      containerRef.current?.releasePointerCapture(e.pointerId);
+    } catch {}
+    
+    setDragState(null);
     setRotateState(null);
     setScaleState(null);
   };
 
-  const startRotate = (e: React.MouseEvent, index: number) => {
+  const startRotate = (e: React.PointerEvent, index: number) => {
+    if (readOnly) return;
     e.stopPropagation();
-    e.preventDefault();
     const sticker = stickers[index];
     const target = e.currentTarget as HTMLElement;
     const stickerEl = target.parentElement;
@@ -126,23 +132,32 @@ export const StickerLayer: React.FC<StickerLayerProps> = ({
       startAngle,
       startRotation: sticker.rotation,
     });
+    
+    containerRef.current?.setPointerCapture(e.pointerId);
   };
 
-  const startScale = (e: React.MouseEvent, index: number) => {
+  const startScale = (e: React.PointerEvent, index: number) => {
+    if (readOnly) return;
     e.stopPropagation();
-    e.preventDefault();
     const sticker = stickers[index];
+    
     setScaleState({
       index,
       startY: e.clientY,
       startScale: sticker.scale,
     });
+    
+    containerRef.current?.setPointerCapture(e.pointerId);
   };
+
+  const isInteracting = dragState !== null || rotateState !== null || scaleState !== null;
 
   return (
     <div
       ref={containerRef}
-      className="absolute inset-0 select-none overflow-hidden touch-none"
+      className={`absolute inset-0 select-none overflow-hidden touch-none z-20 ${
+        isInteracting ? 'pointer-events-auto' : 'pointer-events-none'
+      }`}
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
       onClick={() => setSelectedId(null)}
@@ -162,46 +177,53 @@ export const StickerLayer: React.FC<StickerLayerProps> = ({
               transform: `translate(-50%, -50%) rotate(${sticker.rotation}deg) scale(${sticker.scale})`,
               zIndex: sticker.z_index,
             }}
-            className={`absolute group cursor-grab active:cursor-grabbing ${
-              isSelected ? 'ring-2 ring-amora-rose rounded p-1' : 'hover:ring-1 hover:ring-amora-gold/50 rounded'
+            className={`absolute group rounded pointer-events-auto cursor-grab active:cursor-grabbing ${
+              isSelected 
+                ? 'ring-2 ring-amora-rose p-1 bg-white/10 backdrop-blur-[2px]' 
+                : 'hover:ring-1 hover:ring-amora-gold/50'
             }`}
             onPointerDown={(e) => handlePointerDown(e, index)}
+            onClick={(e) => e.stopPropagation()}
           >
-            {/* Sticker Image / Emoji Fallback */}
-            <span className="text-4xl filter drop-shadow-md select-none pointer-events-none block">
-              {asset.filename}
-            </span>
+            {/* Sticker SVG image */}
+            <div 
+              className="w-16 h-16 filter drop-shadow-md select-none pointer-events-none block"
+              dangerouslySetInnerHTML={{ __html: asset.svgMarkup }}
+            />
 
             {/* Selected Control Handles */}
             {isSelected && !readOnly && (
               <>
                 {/* Delete button */}
                 <button
+                  onPointerDown={(e) => e.stopPropagation()}
                   onClick={(e) => {
                     e.stopPropagation();
                     deleteSticker(index);
                   }}
-                  className="absolute -top-3 -left-3 bg-red-500 hover:bg-red-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-[10px] shadow-md transition-all scale-100 hover:scale-110 active:scale-95"
+                  className="absolute -top-3 -left-3 bg-red-500 hover:bg-red-600 text-white rounded-full w-5 h-5 flex items-center justify-center shadow-md transition-all scale-100 hover:scale-110 active:scale-95 z-50"
                 >
-                  ✕
+                  <X className="w-3 h-3" />
                 </button>
 
                 {/* Rotate handle */}
                 <div
-                  onMouseDown={(e) => startRotate(e, index)}
-                  className="absolute -top-3 -right-3 bg-amora-gold hover:bg-amora-gold/90 text-white rounded-full w-5 h-5 flex items-center justify-center text-[10px] cursor-alias shadow-md transition-all hover:scale-110"
+                  onPointerDown={(e) => startRotate(e, index)}
+                  data-handle="rotate"
+                  className="absolute -top-3 -right-3 bg-amora-gold hover:bg-amora-gold/90 text-white rounded-full w-5 h-5 flex items-center justify-center cursor-alias shadow-md transition-all hover:scale-110 z-50 select-none"
                   title="Drag to Rotate"
                 >
-                  ↻
+                  <RotateCw className="w-3 h-3" />
                 </div>
 
                 {/* Scale handle */}
                 <div
-                  onMouseDown={(e) => startScale(e, index)}
-                  className="absolute -bottom-3 -right-3 bg-amora-terracotta hover:bg-amora-terracotta/90 text-white rounded-full w-5 h-5 flex items-center justify-center text-[10px] cursor-ns-resize shadow-md transition-all hover:scale-110"
+                  onPointerDown={(e) => startScale(e, index)}
+                  data-handle="scale"
+                  className="absolute -bottom-3 -right-3 bg-amora-terracotta hover:bg-amora-terracotta/90 text-white rounded-full w-5 h-5 flex items-center justify-center cursor-ns-resize shadow-md transition-all hover:scale-110 z-50 select-none"
                   title="Drag vertically to Resize"
                 >
-                  ⤢
+                  <Maximize2 className="w-3 h-3" />
                 </div>
               </>
             )}

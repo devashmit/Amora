@@ -1,6 +1,7 @@
 import React from 'react';
 import { PaperStyle, FontFamily, Decoration, StickerPlacement } from '@/types';
 import { StickerLayer } from './StickerLayer';
+import { Mail } from 'lucide-react';
 
 interface LetterCanvasProps {
   toName: string;
@@ -60,11 +61,11 @@ export const LetterCanvas: React.FC<LetterCanvasProps> = ({
   const getBorderClass = () => {
     switch (decorations.border_style) {
       case 'simple':
-        return 'border-4 border-double border-current';
+        return 'border-2 border-current';
       case 'ornate':
-        return 'border-8 border-double border-current rounded-lg p-2';
+        return 'border-4 border-double border-current';
       case 'floral':
-        return 'border-4 border-dashed border-current rounded-xl p-4';
+        return 'border-2 border-dashed border-current';
       default:
         return '';
     }
@@ -73,18 +74,24 @@ export const LetterCanvas: React.FC<LetterCanvasProps> = ({
   return (
     <div
       style={{ color: inkColor }}
-      className={`relative w-full max-w-[650px] aspect-[4/5] md:aspect-[3/4] shadow-2xl rounded-sm pt-12 pb-8 px-8 md:pt-16 md:pb-12 md:px-12 transition-all duration-500 overflow-hidden select-none paper-${paperStyle} ${getBorderClass()}`}
+      onClick={() => setSelectedId?.(null)}
+      className={`relative w-full max-w-[650px] aspect-[4/5] md:aspect-[3/4] shadow-2xl rounded-sm pt-12 pb-8 px-8 md:pt-16 md:pb-12 md:px-12 transition-all duration-500 overflow-hidden select-none paper-${paperStyle}`}
     >
       {/* Texture overlays */}
       <div className="absolute inset-0 opacity-15 pointer-events-none mix-blend-multiply bg-cover bg-center" />
 
+      {/* Border Decoration */}
+      {decorations.border_style && decorations.border_style !== 'none' && (
+        <div className={`absolute inset-4 pointer-events-none rounded-lg ${getBorderClass()}`} />
+      )}
+
       {/* Postage Stamp Decoration */}
       {decorations.postage_stamp && (
-        <div className="absolute top-6 right-6 w-16 h-20 border-2 border-dashed border-current flex items-center justify-center rotate-3 opacity-80 select-none">
-          <div className="text-center font-heading text-[8px] uppercase tracking-widest">
-            Amora<br />
-            <span className="text-lg">✉</span><br />
-            Love
+        <div className="absolute top-6 right-6 w-16 h-20 border-2 border-dashed border-current flex flex-col items-center justify-center rotate-3 opacity-80 select-none">
+          <div className="text-center font-heading text-[8px] uppercase tracking-widest flex flex-col items-center">
+            <span>Amora</span>
+            <Mail className="w-5 h-5 my-0.5 text-current" />
+            <span>Love</span>
           </div>
         </div>
       )}

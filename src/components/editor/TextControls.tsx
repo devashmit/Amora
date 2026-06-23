@@ -1,5 +1,6 @@
 import React from 'react';
 import { FontFamily } from '@/types';
+import { Type, Sliders, Palette } from 'lucide-react';
 
 interface TextControlsProps {
   fontFamily: FontFamily;
@@ -30,11 +31,17 @@ export const TextControls: React.FC<TextControlsProps> = ({
 
   return (
     <div className="space-y-4 font-ui">
-      <h3 className="text-sm font-semibold tracking-wider text-amora-ink/80 uppercase">2. Typography & Ink</h3>
+      <h3 className="text-sm font-semibold tracking-wider text-amora-ink/80 uppercase flex items-center gap-1.5">
+        <Type className="w-4 h-4 text-amora-gold" />
+        <span>2. Typography & Ink</span>
+      </h3>
       
       {/* Font Selection */}
       <div className="space-y-2">
-        <label className="text-xs text-amora-ink/60">Font Style</label>
+        <label className="text-xs text-amora-ink/60 flex items-center gap-1">
+          <Type className="w-3 h-3 text-amora-rose" />
+          <span>Font Style</span>
+        </label>
         <div className="grid grid-cols-3 gap-2">
           {fonts.map((f) => (
             <button
@@ -57,7 +64,10 @@ export const TextControls: React.FC<TextControlsProps> = ({
       {/* Font Size Slider */}
       <div className="space-y-2">
         <div className="flex justify-between text-xs text-amora-ink/60">
-          <span>Ink Size</span>
+          <span className="flex items-center gap-1">
+            <Sliders className="w-3 h-3 text-amora-rose" />
+            <span>Ink Size</span>
+          </span>
           <span className="font-semibold">{fontSize}px</span>
         </div>
         <input
@@ -72,7 +82,10 @@ export const TextControls: React.FC<TextControlsProps> = ({
 
       {/* Ink Colors */}
       <div className="space-y-2">
-        <label className="text-xs text-amora-ink/60 block">Ink Color</label>
+        <label className="text-xs text-amora-ink/60 flex items-center gap-1">
+          <Palette className="w-3 h-3 text-amora-rose" />
+          <span>Ink Color</span>
+        </label>
         <div className="flex items-center gap-3">
           <div className="flex gap-2">
             {colors.map((c) => (

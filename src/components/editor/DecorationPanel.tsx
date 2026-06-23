@@ -1,5 +1,6 @@
 import React from 'react';
 import { Decoration } from '@/types';
+import { Grid, Award, Mail, Feather, X } from 'lucide-react';
 
 interface DecorationPanelProps {
   decorations: Decoration;
@@ -18,7 +19,7 @@ export const DecorationPanel: React.FC<DecorationPanelProps> = ({
   ];
 
   const seals: { id: 'heart' | 'star' | 'moon' | 'floral' | null; name: string; icon: string }[] = [
-    { id: null, name: 'No Seal', icon: '✕' },
+    { id: null, name: 'No Seal', icon: '' },
     { id: 'heart', name: 'Heart Seal', icon: '❤️' },
     { id: 'star', name: 'Star Seal', icon: '⭐' },
     { id: 'moon', name: 'Moon Seal', icon: '🌙' },
@@ -31,11 +32,17 @@ export const DecorationPanel: React.FC<DecorationPanelProps> = ({
 
   return (
     <div className="space-y-4 font-ui">
-      <h3 className="text-sm font-semibold tracking-wider text-amora-ink/80 uppercase">3. Framing & Seals</h3>
+      <h3 className="text-sm font-semibold tracking-wider text-amora-ink/80 uppercase flex items-center gap-1.5">
+        <Feather className="w-4 h-4 text-amora-gold" />
+        <span>3. Framing & Seals</span>
+      </h3>
 
       {/* Border Styles */}
       <div className="space-y-2">
-        <label className="text-xs text-amora-ink/60">Border Layout</label>
+        <label className="text-xs text-amora-ink/60 flex items-center gap-1">
+          <Grid className="w-3 h-3 text-amora-rose" />
+          <span>Border Layout</span>
+        </label>
         <div className="grid grid-cols-2 gap-2">
           {borderStyles.map((b) => (
             <button
@@ -55,7 +62,10 @@ export const DecorationPanel: React.FC<DecorationPanelProps> = ({
 
       {/* Wax Seals */}
       <div className="space-y-2">
-        <label className="text-xs text-amora-ink/60 block">Wax Seal (Seals the note)</label>
+        <label className="text-xs text-amora-ink/60 flex items-center gap-1">
+          <Award className="w-3 h-3 text-amora-rose" />
+          <span>Wax Seal (Seals the note)</span>
+        </label>
         <div className="grid grid-cols-5 gap-1.5">
           {seals.map((s) => (
             <button
@@ -68,7 +78,9 @@ export const DecorationPanel: React.FC<DecorationPanelProps> = ({
               }`}
               title={s.name}
             >
-              <span className="text-base">{s.icon}</span>
+              <span className="text-base flex items-center justify-center">
+                {s.id === null ? <X className="w-4 h-4 text-amora-ink/50" /> : s.icon}
+              </span>
             </button>
           ))}
         </div>
@@ -84,7 +96,10 @@ export const DecorationPanel: React.FC<DecorationPanelProps> = ({
             className="sr-only peer"
           />
           <div className="w-9 h-5 bg-amora-ink/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-amora-rose" />
-          <span className="ml-3 text-xs font-medium text-amora-ink/80">Attach Vintage Postage Stamp</span>
+          <span className="ml-3 text-xs font-medium text-amora-ink/80 flex items-center gap-1">
+            <Mail className="w-3.5 h-3.5 text-amora-rose" />
+            <span>Attach Vintage Postage Stamp</span>
+          </span>
         </label>
       </div>
     </div>
