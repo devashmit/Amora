@@ -18,11 +18,11 @@ export const Button: React.FC<ButtonProps> = ({
 
   const variants = {
     primary:
-      'bg-amora-rose hover:bg-amora-rose/95 text-white shadow-md hover:shadow-lg focus:ring-amora-rose',
+      'bg-gradient-to-r from-amora-rose to-amora-gold hover:from-amora-rose/90 hover:to-amora-gold/90 text-white shadow-md hover:shadow-xl hover:shadow-amora-rose/10 hover:-translate-y-0.5 focus:ring-amora-rose',
     secondary:
-      'bg-amora-gold hover:bg-amora-gold/95 text-white shadow-md hover:shadow-lg focus:ring-amora-gold',
+      'bg-amora-gold hover:bg-amora-gold/90 text-white shadow-md hover:shadow-lg hover:-translate-y-0.5 focus:ring-amora-gold',
     outline:
-      'border-2 border-amora-ink/20 hover:border-amora-ink/50 text-amora-ink hover:bg-amora-ink/5 focus:ring-amora-ink',
+      'border-2 border-amora-gold/30 hover:border-amora-gold text-amora-ink hover:bg-amora-gold/5 focus:ring-amora-gold',
     ghost:
       'text-amora-ink/80 hover:text-amora-ink hover:bg-amora-ink/5 focus:ring-amora-ink',
   };

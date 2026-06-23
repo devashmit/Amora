@@ -5,8 +5,8 @@
 @tailwind utilities;
 
 :root {
-  --background: #fdf6ec; /* Default to cream background */
-  --foreground: #2c1810; /* Default to ink */
+  --background: #faf7f2; /* Warm Alabaster */
+  --foreground: #0c231c; /* Forest Spruce Ink */
   
   --font-heading: 'Cormorant Garamond', serif;
   --font-handwriting: 'Dancing Script', cursive;
@@ -15,7 +15,12 @@
 
 body {
   color: var(--foreground);
-  background: radial-gradient(circle at center, #fdfbf7 0%, #f7eff0 60%, #eedbde 100%);
+  background: 
+    radial-gradient(at 0% 0%, rgba(222, 236, 233, 0.7) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(245, 219, 222, 0.7) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(220, 169, 99, 0.15) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(214, 112, 124, 0.1) 0px, transparent 50%),
+    #faf7f2;
   font-family: var(--font-ui);
   min-height: 100vh;
   overflow-x: hidden;
@@ -23,9 +28,60 @@ body {
 
 /* Premium glassmorphic containers */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(250, 247, 242, 0.65);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(220, 169, 99, 0.2);
+  box-shadow: 
+    0 4px 30px rgba(12, 35, 28, 0.03),
+    inset 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+.glass-premium {
+  background: rgba(250, 247, 242, 0.75);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(220, 169, 99, 0.3);
+  box-shadow: 
+    0 10px 40px rgba(12, 35, 28, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -1px 0 rgba(12, 35, 28, 0.02);
+}
+
+/* Subtle floating effect */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(0.5deg);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Golden shimmer effect */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.gold-shimmer {
+  background: linear-gradient(
+    90deg,
+    #D6707C 0%,
+    #E8A0A7 25%,
+    #DCA963 50%,
+    #E8A0A7 75%,
+    #D6707C 100%
+  );
+  background-size: 200% auto;
+  color: white;
+  animation: shimmer 4s linear infinite;
 }
 
 @layer utilities {
@@ -35,36 +91,59 @@ body {
   
   /* Paper styles & textures */
   .paper-parchment {
-    background-color: #f5e6d3;
-    background-image: url('/textures/parchment.png');
+    background-color: #f3efe5;
+    background-image: 
+      radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, rgba(0,0,0,0.06) 100%),
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.12'/%3E%3C/svg%3E");
     background-blend-mode: multiply;
+    border: 1px solid rgba(12, 35, 28, 0.08);
   }
   
   .paper-blush {
-    background-color: #f9e8e8;
-    background-image: url('/textures/watercolor-wash.png');
+    background-color: #faf0f0;
+    background-image: 
+      radial-gradient(circle at 20% 20%, rgba(214,112,124,0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(220,169,99,0.08) 0%, transparent 50%),
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.015' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
     background-blend-mode: multiply;
+    border: 1px solid rgba(214, 112, 124, 0.1);
   }
   
   .paper-cream {
-    background-color: #fdfbf5;
-    background-image: url('/textures/linen.png');
-    background-blend-mode: multiply;
+    background-color: #FAF7F2;
+    background-image: 
+      linear-gradient(rgba(220, 169, 99, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(220, 169, 99, 0.03) 1px, transparent 1px);
+    background-size: 16px 16px;
+    border: 1px solid rgba(220, 169, 99, 0.12);
   }
   
   .paper-navy {
-    background-color: #1a2744;
-    color: #e8dcc8;
+    background-color: #12221d; /* Deep Forest Spruce Blue */
+    color: #dfcaa5;
+    background-image: 
+      radial-gradient(circle at center, rgba(255,255,255,0.04) 0%, transparent 100%),
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.06' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
+    background-blend-mode: overlay;
+    border: 1px solid rgba(220, 169, 99, 0.15);
   }
   
   .paper-ivory {
-    background-color: #fffff0;
-    background-image: url('/textures/noise.png');
+    background-color: #fffff6;
+    background-image: 
+      radial-gradient(circle at 80% 20%, rgba(255,255,255,0.4) 0%, transparent 60%),
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.15' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
     background-blend-mode: multiply;
+    border: 1px solid rgba(12, 35, 28, 0.05);
   }
   
   .paper-dark {
-    background-color: #1a0f0a;
-    color: #c9a96e;
+    background-color: #081612; /* Extreme dark spruce */
+    color: #dfcaa5;
+    background-image: 
+      radial-gradient(circle at 30% 20%, rgba(214, 112, 124, 0.05) 0%, transparent 50%),
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.03' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
+    background-blend-mode: overlay;
+    border: 1px solid rgba(220, 169, 99, 0.2);
   }
 }
