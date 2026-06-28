@@ -16,11 +16,10 @@
 body {
   color: var(--foreground);
   background: 
-    radial-gradient(at 0% 0%, rgba(222, 236, 233, 0.7) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(245, 219, 222, 0.7) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(220, 169, 99, 0.15) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, rgba(214, 112, 124, 0.1) 0px, transparent 50%),
-    #faf7f2;
+    radial-gradient(at 0% 0%, rgba(198, 212, 207, 0.4) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(220, 169, 99, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(200, 210, 190, 0.3) 0px, transparent 50%),
+    #fcfaf6;
   font-family: var(--font-ui);
   min-height: 100vh;
   overflow-x: hidden;
