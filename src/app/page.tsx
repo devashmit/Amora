@@ -1,4 +1,4 @@
-// Step 3: feat(editor): decouple envelope selection from mood presets
+// Step 4: feat(flow): add landing step to flow state machine
 'use client';
 
 import React, { useState, useEffect } from 'react';
