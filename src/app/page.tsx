@@ -1,4 +1,4 @@
-// Step 10: feat(recipient): implement recipient opening interaction
+// Step 11: style(envelope): set explicit z-index styles to fix layering
 'use client';
 
 import React, { useState, useEffect } from 'react';
