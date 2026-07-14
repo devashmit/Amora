@@ -1,4 +1,4 @@
-// Step 6: refactor(motion): refine top flap transition eases and duration
+// Step 7: refactor(motion): change letter sliding to restrained easing
 'use client';
 
 import React, { useState, useEffect } from 'react';
