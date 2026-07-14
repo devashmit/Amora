@@ -1,4 +1,4 @@
-// Step 7: refactor(motion): change letter sliding to restrained easing
+// Step 8: feat(flow): implement sealing step folding animation
 'use client';
 
 import React, { useState, useEffect } from 'react';
