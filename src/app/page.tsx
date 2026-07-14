@@ -1,4 +1,4 @@
-// Step 5: style(hero): introduce split-column layout framework
+// Step 6: refactor(motion): refine top flap transition eases and duration
 'use client';
 
 import React, { useState, useEffect } from 'react';
