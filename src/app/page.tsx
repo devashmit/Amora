@@ -1,4 +1,4 @@
-// Step 9: feat(share): add link delivery view and copy utility
+// Step 10: feat(recipient): implement recipient opening interaction
 'use client';
 
 import React, { useState, useEffect } from 'react';
