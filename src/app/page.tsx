@@ -1,4 +1,4 @@
-// Step 11: style(envelope): set explicit z-index styles to fix layering
+// Step 12: style(botanical): add bottom corner gold/bronze imprints
 'use client';
 
 import React, { useState, useEffect } from 'react';
