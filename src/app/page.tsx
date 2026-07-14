@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { PetalRain } from '@/components/landing/PetalRain';
+
 import { Heart } from 'lucide-react';
 import { STICKERS } from '@/lib/stickers';
 
@@ -121,7 +121,7 @@ export default function Home() {
       <div className="absolute inset-0 leaf-shadow-overlay z-10 pointer-events-none" />
 
       {/* Performant, elegant petal rain */}
-      <PetalRain />
+      
 
       {/* Publication Navigation */}
       <header className="max-w-7xl mx-auto w-full px-8 py-10 flex justify-between items-baseline z-20">
