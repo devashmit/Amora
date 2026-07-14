@@ -1,4 +1,4 @@
-// Step 2: style(landing): simplify header navigation links and layout
+// Step 3: feat(editor): decouple envelope selection from mood presets
 'use client';
 
 import React, { useState, useEffect } from 'react';
