@@ -1,4 +1,4 @@
-// Step 8: feat(flow): implement sealing step folding animation
+// Step 9: feat(share): add link delivery view and copy utility
 'use client';
 
 import React, { useState, useEffect } from 'react';
