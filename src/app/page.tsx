@@ -1,4 +1,4 @@
-// Step 4: feat(flow): add landing step to flow state machine
+// Step 5: style(hero): introduce split-column layout framework
 'use client';
 
 import React, { useState, useEffect } from 'react';
