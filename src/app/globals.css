@@ -199,6 +199,7 @@ body {
     }
   }
 
+  /* Petal animation variants with distinct duration scales */
   .animate-petal-slow {
     animation: float-petal 12s linear infinite;
   }
