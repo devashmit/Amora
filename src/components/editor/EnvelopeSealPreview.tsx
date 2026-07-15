@@ -91,6 +91,7 @@ export const EnvelopeSealPreview: React.FC<EnvelopeSealPreviewProps> = ({
 
   useEffect(() => {
     setAnimationStage('idle');
+    /* Timeline orchestration for sequential preview phases (Inserting -> Folding -> Sealing) */
     const slideTimer = setTimeout(() => setAnimationStage('sliding'), 1200);
     const closeTimer = setTimeout(() => setAnimationStage('closing'), 2800);
     const sealedTimer = setTimeout(() => setAnimationStage('sealed'), 3800);
