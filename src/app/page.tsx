@@ -406,6 +406,7 @@ export default function Home() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+                  {/* Map over botanical dictionary items showcasing flower symbolism */}
                   {[
                     { title: 'Wild Lavender', meaning: 'Devotion, Calm & Silent Grace', desc: 'A soothing companion for words of gratitude and long-distance memories.', img: '/stickers/wild-lavender.png' },
                     { title: 'Cherry Blossom', meaning: 'The Beauty of Transient Moments', desc: 'Celebrate fresh starts, new blossoms of romance, and passing seasons.', img: '/stickers/cherry-blossom.png' },
