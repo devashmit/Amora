@@ -204,6 +204,7 @@ export default function Home() {
             >
               {/* Floating Petals Drifting Background */}
               <div className="absolute inset-0 overflow-hidden pointer-events-none z-0 min-h-[140vh]">
+                {/* Petals drift down using distinct animation delays and sizes to create parallax depth */}
                 {[
                   { left: '8%', delay: '0s', speed: 'animate-petal-slow', size: 'w-4 h-4' },
                   { left: '22%', delay: '4s', speed: 'animate-petal-medium', size: 'w-6 h-6' },
