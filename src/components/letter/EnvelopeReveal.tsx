@@ -184,6 +184,7 @@ export const EnvelopeReveal: React.FC<EnvelopeRevealProps> = ({
             {!isOpen && (
               <motion.div
                 initial={{ opacity: 1 }}
+                /* Twine unravelling animation coordinates with the wax seal break sequence */
                 animate={sealBroken ? { opacity: 0, scale: 1.15 } : { opacity: 1 }}
                 transition={{ duration: 0.6, ease: 'easeInOut' }}
                 className="absolute inset-0 pointer-events-none z-25"
