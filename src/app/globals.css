@@ -131,5 +131,83 @@ body {
     background-blend-mode: overlay;
     border: 1px solid rgba(168, 135, 86, 0.12);
   }
+
+  /* Premium Handmade Deckled Edges */
+  .deckled-edges {
+    position: relative;
+    border: 1px solid rgba(12, 35, 28, 0.08);
+    box-shadow: 
+      0 12px 36px rgba(12, 35, 28, 0.08),
+      0 2px 8px rgba(12, 35, 28, 0.03);
+  }
+  
+  .deckled-edges::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border: 12px solid transparent;
+    border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cpath d='M0,0 Q3,3 6,0 T12,0 T18,0 T24,0 T30,0 T36,0 T42,0 T48,0 L48,48 L0,48 Z' fill='none' stroke='%23FAF7F2' stroke-width='3'/%3E%3C/svg%3E") 12 repeat;
+    filter: drop-shadow(0px 1px 2px rgba(12, 35, 28, 0.05));
+    opacity: 0.85;
+  }
+
+  /* Handmade paper fibers / texture */
+  .paper-fibers {
+    position: relative;
+  }
+  .paper-fibers::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.06;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.05' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  }
+
+  /* Delicate notebook ruling / lined handwriting lines */
+  .paper-lined {
+    background-image: linear-gradient(rgba(12, 35, 28, 0.07) 1px, transparent 1px);
+    background-size: 100% 2rem;
+    line-height: 2rem;
+  }
+
+  /* Organic Botanical Watermark Overlay */
+  .botanical-watermark {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' opacity='0.04' fill='currentColor'%3E%3Cpath d='M50,10 C45,25 35,35 20,40 C35,45 45,55 50,70 C55,55 65,45 80,40 C65,35 55,25 50,10 Z M50,45 C48,45 45,48 45,50 C45,52 48,55 50,55 C52,55 55,52 55,50 C55,48 52,45 50,45 Z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 40%;
+  }
+
+  /* Drifting Flower Petals / Leaves animation */
+  @keyframes float-petal {
+    0% {
+      transform: translateY(-10%) translateX(0) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.8;
+    }
+    90% {
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateY(110vh) translateX(-100px) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  .animate-petal-slow {
+    animation: float-petal 12s linear infinite;
+  }
+  .animate-petal-medium {
+    animation: float-petal 9s linear infinite;
+  }
+  .animate-petal-fast {
+    animation: float-petal 7s linear infinite;
+  }
 }
+
 
