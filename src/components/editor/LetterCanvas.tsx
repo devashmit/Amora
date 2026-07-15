@@ -77,7 +77,7 @@ export const LetterCanvas: React.FC<LetterCanvasProps> = ({
     <div
       style={{ color: inkColor }}
       onClick={() => setSelectedId?.(null)}
-      className={`relative w-full max-w-[650px] aspect-[4/5] md:aspect-[3/4] shadow-2xl rounded-sm pt-12 pb-8 px-8 md:pt-16 md:pb-12 md:px-12 transition-all duration-500 overflow-hidden select-none paper-${paperStyle}`}
+      className={`relative w-full max-w-[650px] aspect-[4/5] md:aspect-[3/4] shadow-2xl rounded-sm pt-12 pb-8 px-8 md:pt-16 md:pb-12 md:px-12 transition-all duration-500 overflow-hidden select-none paper-${paperStyle} deckled-edges paper-fibers botanical-watermark ${fontFamily === 'Dancing Script' ? 'paper-lined' : ''}`}
     >
       {/* Texture overlays */}
       <div className="absolute inset-0 opacity-15 pointer-events-none mix-blend-multiply bg-cover bg-center" />
