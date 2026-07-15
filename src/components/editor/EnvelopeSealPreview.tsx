@@ -224,24 +224,47 @@ export const EnvelopeSealPreview: React.FC<EnvelopeSealPreviewProps> = ({
           <div className="absolute inset-x-0 top-0 h-[2px] bg-white/20" />
         </motion.div>
 
+        {/* RUSTIC TWINE WRAP */}
+        {(animationStage === 'closing' || animationStage === 'sealed') && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={animationStage === 'sealed' ? { opacity: 1, scale: 1 } : { opacity: 0.5 }}
+            transition={{ duration: 0.6 }}
+            className="absolute inset-0 pointer-events-none z-25"
+          >
+            {/* Horizontal twine */}
+            <div className="absolute top-1/2 left-0 right-0 h-[4px] bg-[#8A6644] opacity-85 shadow-[0_2px_4px_rgba(0,0,0,0.15)]" style={{ transform: 'translateY(-50%)', backgroundImage: "repeating-linear-gradient(45deg, #745133, #745133 4px, #8A6644 4px, #8A6644 8px)" }} />
+            {/* Vertical twine */}
+            <div className="absolute left-1/2 top-0 bottom-0 w-[4px] bg-[#8A6644] opacity-85 shadow-[0_2px_4px_rgba(0,0,0,0.15)]" style={{ transform: 'translateX(-50%)', backgroundImage: "repeating-linear-gradient(45deg, #745133, #745133 4px, #8A6644 4px, #8A6644 8px)" }} />
+          </motion.div>
+        )}
+
         {/* WAX SEAL (Centered at the tip of the closed flap) */}
         <div className="absolute top-[60%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-35 pointer-events-none">
           <motion.div
             variants={sealVariants}
             animate={animationStage}
-            className="w-14 h-14 bg-amora-seal rounded-full border-[3px] border-amber-600/35 flex items-center justify-center text-white text-2xl shadow-xl relative"
+            className="w-16 h-16 rounded-full flex items-center justify-center text-white text-2xl shadow-2xl relative animate-sway"
             style={{
-              background: 'radial-gradient(circle at 35% 35%, #e15b64 0%, #b23a48 70%, #800e13 100%)',
-              boxShadow: '0 6px 15px rgba(128,14,19,0.35), inset 0 2px 4px rgba(255,255,255,0.2)'
+              background: 'radial-gradient(circle at 30% 30%, #d6707c 10%, #b23a48 70%, #6b0010 100%)',
+              boxShadow: 'inset 0 3px 5px rgba(255,255,255,0.4), inset 0 -3px 8px rgba(0,0,0,0.5), 0 10px 24px rgba(12,35,28,0.3)',
+              borderRadius: '48% 52% 47% 53% / 51% 49% 51% 49%'
             }}
           >
-            {/* Realistic wax seal emblem texture */}
-            <div className="absolute inset-1.5 border border-white/10 rounded-full flex items-center justify-center bg-black/5">
+            {/* Outer melting wax ring texture */}
+            <div className="absolute -inset-1 border-2 border-[#b23a48]/40 rounded-full opacity-60" style={{ borderRadius: '52% 48% 51% 49% / 49% 51% 48% 52%' }} />
+            
+            <div 
+              className="absolute inset-2 border border-white/10 rounded-full flex items-center justify-center bg-black/15 shadow-[inset_0_2px_4px_rgba(0,0,0,0.4)]"
+              style={{ borderRadius: '50% 50% 49% 51% / 50% 51% 49% 50%' }}
+            >
               {decorations.seal_type === 'heart' && '❤️'}
               {decorations.seal_type === 'star' && '⭐'}
               {decorations.seal_type === 'moon' && '🌙'}
               {decorations.seal_type === 'floral' && '🌸'}
-              {!decorations.seal_type && <Mail className="w-5 h-5 text-white/90" />}
+              {!decorations.seal_type && (
+                <span className="font-heading text-lg font-bold tracking-widest text-[#FFFDF9]/90 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">A</span>
+              )}
             </div>
           </motion.div>
         </div>
