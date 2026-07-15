@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Amora - Slow Digital Correspondence Atelier
+
+Amora features premium, slow-made digital letters sealed inside interactive envelopes, styled with hand-made deckled paper textures, drifting blossom petals, and rustic string wrapping.
 
 ## Getting Started
 
