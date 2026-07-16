@@ -19,11 +19,11 @@ export const CreateLetterSchema = z.object({
     })
   ).default([]),
   decorations: z.object({
-    seal_type: z.enum(['heart', 'star', 'moon', 'floral']).nullable().optional(),
+    seal_type: z.enum(['heart', 'star', 'moon', 'floral', 'rose', 'olive', 'initial']).nullable().optional(),
     seal_position: z.enum(['bottom-center', 'bottom-right']).optional(),
     border_style: z.enum(['none', 'simple', 'ornate', 'floral']).optional(),
     postage_stamp: z.boolean().optional(),
-    envelope_style: z.enum(['classic', 'vintage', 'royal', 'blossom']).optional(),
+    envelope_style: z.enum(['classic', 'vintage', 'royal', 'blossom', 'ivory', 'forest', 'midnight', 'rose', 'charcoal', 'parchment']).optional(),
   }).default({}),
   is_public: z.boolean().default(false),
 });
