@@ -45,31 +45,51 @@ export const LetterCanvas: React.FC<LetterCanvasProps> = ({
   bringToFront,
 }) => {
   
-  // Set correct CSS font family class
+  // Font Family styling class mapping
   const getFontClass = () => {
     switch (fontFamily) {
       case 'Dancing Script':
-        return 'font-handwriting';
+        return 'font-handwriting font-medium';
       case 'Cormorant Garamond':
-        return 'font-heading';
+        return 'font-heading font-light tracking-wide text-justify';
       case 'Playfair Display':
-        return 'font-serif';
+        return 'font-serif text-justify leading-relaxed';
       default:
         return 'font-ui';
     }
   };
 
-  // Border decorations
+  // Border layouts
   const getBorderClass = () => {
     switch (decorations.border_style) {
       case 'simple':
-        return 'border-2 border-current';
+        return 'border border-current/30 m-4';
       case 'ornate':
-        return 'border-4 border-double border-current';
+        return 'border-4 border-double border-current/25 m-4';
       case 'floral':
-        return 'border-2 border-dashed border-current';
+        return 'border border-dashed border-current/35 m-4';
       default:
         return '';
+    }
+  };
+
+  // Maps letter styles to actual luxury backgrounds
+  const getPaperBgClass = () => {
+    switch (paperStyle) {
+      case 'parchment':
+        return 'paper-pressed-grain bg-[#F5EFE4] text-[#3D2C1E]';
+      case 'blush':
+        return 'paper-rose-fibers bg-[#FAF0F0] text-[#5A3835]';
+      case 'cream':
+        return 'paper-cotton-fibers bg-[#FCFAF5] text-[#2C2117]';
+      case 'navy':
+        return 'paper-charcoal-fibers bg-[#1E2E2A] text-[#F3ECE0]';
+      case 'ivory':
+        return 'paper-cotton-fibers bg-[#FDFBF7] text-[#332A20]';
+      case 'dark':
+        return 'paper-charcoal-fibers bg-[#252629] text-[#E8E8E8]';
+      default:
+        return 'paper-cotton-fibers bg-[#FCFAF5] text-[#2C2117]';
     }
   };
 
@@ -77,52 +97,56 @@ export const LetterCanvas: React.FC<LetterCanvasProps> = ({
     <div
       style={{ color: inkColor }}
       onClick={() => setSelectedId?.(null)}
-      /* paper-lined is conditionally applied to render notebook lines under handwritten font */
-      className={`relative w-full max-w-[650px] aspect-[4/5] md:aspect-[3/4] shadow-2xl rounded-sm pt-12 pb-8 px-8 md:pt-16 md:pb-12 md:px-12 transition-all duration-500 overflow-hidden select-none paper-${paperStyle} deckled-edges paper-fibers botanical-watermark ${fontFamily === 'Dancing Script' ? 'paper-lined' : ''}`}
+      className={`relative w-full max-w-[650px] aspect-[3/4.2] shadow-2xl rounded-sm pt-14 pb-10 px-10 md:pt-20 md:pb-14 md:px-16 transition-all duration-500 overflow-hidden select-none deckled-edges-premium ${getPaperBgClass()} ${fontFamily === 'Dancing Script' ? 'paper-lined' : ''}`}
     >
-      {/* Texture overlays */}
-      <div className="absolute inset-0 opacity-15 pointer-events-none mix-blend-multiply bg-cover bg-center" />
+      {/* Delicate organic overlay lighting */}
+      <div className="absolute inset-0 pointer-events-none bg-gradient-to-tr from-black/5 via-transparent to-white/10" />
 
-      {/* Border Decoration */}
+      {/* Realistic Fold Creases */}
+      <div className="letter-fold-crease letter-fold-crease-top opacity-70" />
+      <div className="letter-fold-crease letter-fold-crease-bottom opacity-70" />
+
+      {/* Decorative Borders */}
       {decorations.border_style && decorations.border_style !== 'none' && (
-        <div className={`absolute inset-4 pointer-events-none rounded-lg ${getBorderClass()}`} />
+        <div className={`absolute inset-0 pointer-events-none rounded-sm ${getBorderClass()}`} />
       )}
 
-      {/* Postage Stamp Decoration */}
+      {/* Postage Stamp */}
       {decorations.postage_stamp && (
-        <div className="absolute top-6 right-6 w-16 h-20 border-2 border-dashed border-current flex flex-col items-center justify-center rotate-3 opacity-80 select-none">
-          <div className="text-center font-heading text-[8px] uppercase tracking-widest flex flex-col items-center">
+        <div className="absolute top-8 right-8 w-14 h-16 border border-dashed border-current/40 flex flex-col items-center justify-center rotate-3 opacity-60 select-none">
+          <div className="text-center font-heading text-[7px] uppercase tracking-widest flex flex-col items-center">
             <span>Amora</span>
-            <Mail className="w-5 h-5 my-0.5 text-current" />
-            <span>Love</span>
+            <Mail className="w-4 h-4 my-0.5 text-current/80" />
+            <span>Post</span>
           </div>
         </div>
       )}
 
-      {/* Content wrapper */}
+      {/* Content wrapper with generous margins */}
       <div className={`h-full flex flex-col justify-between relative z-10 ${getFontClass()}`}>
+        
         {/* Recipient Field */}
-        <div className="mb-4 pt-1">
-          <span className="text-sm md:text-base opacity-75 mr-2">Dearest,</span>
+        <div className="mb-6 pt-2">
+          <span className="text-xs uppercase tracking-widest opacity-40 font-sans mr-2 block mb-1">Dearest,</span>
           {readOnly ? (
-            <span className="text-xl md:text-2xl font-semibold border-b border-transparent">{toName || 'Someone Special'}</span>
+            <span className="text-xl md:text-2xl font-semibold border-b border-transparent leading-relaxed">{toName || 'Someone Special'}</span>
           ) : (
             <input
               type="text"
               placeholder="Recipient name"
               value={toName}
               onChange={(e) => setToName?.(e.target.value)}
-              className="bg-transparent border-b border-current/25 hover:border-current/55 focus:border-current focus:outline-none text-xl md:text-2xl font-semibold w-[200px] py-1 transition-colors"
+              className="bg-transparent border-b border-current/20 hover:border-current/40 focus:border-current focus:outline-none text-xl md:text-2xl font-semibold w-[220px] py-0.5 transition-colors"
             />
           )}
         </div>
 
         {/* Message Editor Area */}
-        <div className="flex-grow flex items-center justify-center my-4 overflow-hidden">
+        <div className="flex-grow flex items-start my-2 overflow-hidden">
           {readOnly ? (
             <p
-              style={{ fontSize: `${fontSize}px`, lineHeight: 1.6 }}
-              className="w-full text-center whitespace-pre-wrap select-text break-words overflow-y-auto max-h-full py-4"
+              style={{ fontSize: `${fontSize}px`, lineHeight: fontFamily === 'Dancing Script' ? '2rem' : '1.75' }}
+              className="w-full whitespace-pre-wrap select-text break-words overflow-y-auto max-h-full py-2 pr-2 scrollbar-thin text-left font-serif"
             >
               {message || 'Write a letter full of beautiful thoughts...'}
             </p>
@@ -132,37 +156,30 @@ export const LetterCanvas: React.FC<LetterCanvasProps> = ({
               maxLength={1000}
               value={message}
               onChange={(e) => setMessage?.(e.target.value)}
-              style={{ fontSize: `${fontSize}px`, lineHeight: 1.6 }}
-              className="w-full h-full bg-transparent text-center focus:outline-none resize-none placeholder-current/40 py-4"
+              style={{ fontSize: `${fontSize}px`, lineHeight: fontFamily === 'Dancing Script' ? '2rem' : '1.75' }}
+              className="w-full h-full bg-transparent text-left focus:outline-none resize-none placeholder-current/30 py-2 scrollbar-thin"
             />
           )}
         </div>
 
-        {/* Sender / Seal Field */}
-        <div className="flex flex-col items-center justify-end relative mt-2">
-          {/* Wax Seal rendering */}
-          {decorations.seal_type && (
-            <div className="absolute -top-12 animate-bounce duration-1000 flex flex-col items-center select-none cursor-pointer">
-              <div className="w-12 h-12 bg-amora-seal rounded-full border-4 border-amber-600/30 flex items-center justify-center text-white text-xl shadow-lg relative transform hover:scale-105 active:scale-95 transition-transform">
-                {decorations.seal_type === 'heart' && '❤️'}
-                {decorations.seal_type === 'star' && '⭐'}
-                {decorations.seal_type === 'moon' && '🌙'}
-                {decorations.seal_type === 'floral' && '🌸'}
-              </div>
-            </div>
-          )}
-
-          <div className="w-full flex justify-end items-center">
-            <span className="text-sm md:text-base opacity-75 mr-2">With love,</span>
+        {/* Sender / Signature Block */}
+        <div className="flex flex-col items-end mt-6 pr-2">
+          <span className="text-xs uppercase tracking-widest opacity-45 font-sans mb-1">Signed,</span>
+          <div className="flex justify-end items-center">
             {readOnly ? (
-              <span className="text-lg md:text-xl font-semibold border-b border-transparent">{fromName || 'Forever Yours'}</span>
+              <span 
+                className="text-2xl font-handwriting italic rotate-[-1.5deg] block font-bold brightness-[0.75]"
+                style={{ textShadow: '0.5px 0.5px 0.5px rgba(255,255,255,0.4)' }}
+              >
+                {fromName || 'Forever Yours'}
+              </span>
             ) : (
               <input
                 type="text"
                 placeholder="Your name"
                 value={fromName}
                 onChange={(e) => setFromName?.(e.target.value)}
-                className="bg-transparent border-b border-current/25 hover:border-current/55 focus:border-current focus:outline-none text-lg md:text-xl font-semibold w-[160px] py-0 transition-colors"
+                className="bg-transparent border-b border-current/20 hover:border-current/40 focus:border-current focus:outline-none text-lg md:text-xl font-handwriting italic w-[180px] py-0.5 transition-colors"
               />
             )}
           </div>
