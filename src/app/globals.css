@@ -210,6 +210,25 @@ body {
     animation: float-petal 7s linear infinite;
   }
 
+  /* Realistic Fold Creases */
+  .letter-fold-crease {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 6px;
+    pointer-events: none;
+    z-index: 20;
+    mix-blend-mode: multiply;
+  }
+  .letter-fold-crease-top {
+    top: 33.33%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.06) 0%, rgba(255,255,255,0.08) 50%, rgba(0,0,0,0.03) 100%);
+  }
+  .letter-fold-crease-bottom {
+    top: 66.66%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.06) 0%, rgba(255,255,255,0.08) 50%, rgba(0,0,0,0.03) 100%);
+  }
+
   /* Premium Paper Textures */
   .paper-cotton-fibers {
     background-image: 
@@ -236,6 +255,25 @@ body {
     background-image: 
       radial-gradient(circle at 80% 10%, rgba(255,255,255,0.03) 0%, transparent 70%),
       url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.06' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.07'/%3E%3C/svg%3E");
+  }
+
+  /* Paper Deckled Edges - Rough luxury feel */
+  .deckled-edges-premium {
+    position: relative;
+    border: none;
+    box-shadow: 
+      0 15px 40px rgba(0, 0, 0, 0.08),
+      0 4px 12px rgba(0, 0, 0, 0.04);
+  }
+  .deckled-edges-premium::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border: 8px solid transparent;
+    border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M0,0 Q1.5,1.5 3,0 T6,0 T9,0 T12,0 T15,0 T18,0 T21,0 T24,0 L24,24 L0,24 Z' fill='none' stroke='%23ffffff' stroke-width='2.5'/%3E%3C/svg%3E") 8 repeat;
+    opacity: 0.95;
+    mix-blend-mode: overlay;
   }
 }
 
