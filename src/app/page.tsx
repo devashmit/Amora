@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
+
 import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, Copy, Check, ArrowRight, Leaf } from 'lucide-react';
 import { STICKERS } from '@/lib/stickers';
@@ -145,7 +145,8 @@ export default function Home() {
 
   const transitionConfig = {
     duration: 0.8,
-    ease: [0.22, 1, 0.36, 1]
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ease: [0.22, 1, 0.36, 1] as any
   };
 
   return (
@@ -676,7 +677,7 @@ export default function Home() {
             >
               {/* Recipient Headline */}
               <div className="text-center space-y-3 mb-16">
-                <p className="text-xs uppercase tracking-[0.25em] text-[#0C231C]/40 font-bold">You've received a letter.</p>
+                <p className="text-xs uppercase tracking-[0.25em] text-[#0C231C]/40 font-bold">You&apos;ve received a letter.</p>
                 {step === 'recipient' && (
                   <p className="text-[10px] uppercase tracking-widest text-[#D6707C] font-semibold animate-pulse">Click the wax seal to open</p>
                 )}
