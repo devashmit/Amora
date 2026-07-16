@@ -18,12 +18,15 @@ export const DecorationPanel: React.FC<DecorationPanelProps> = ({
     { id: 'floral', name: 'Floral Dash' },
   ];
 
-  const seals: { id: 'heart' | 'star' | 'moon' | 'floral' | null; name: string; icon: string }[] = [
+  const seals: { id: 'heart' | 'star' | 'moon' | 'floral' | 'rose' | 'olive' | 'initial' | null; name: string; icon: string }[] = [
     { id: null, name: 'No Seal', icon: '' },
     { id: 'heart', name: 'Heart Seal', icon: '❤️' },
     { id: 'star', name: 'Star Seal', icon: '⭐' },
     { id: 'moon', name: 'Moon Seal', icon: '🌙' },
     { id: 'floral', name: 'Floral Seal', icon: '🌸' },
+    { id: 'rose', name: 'Rose Seal', icon: '🌹' },
+    { id: 'olive', name: 'Olive Seal', icon: '🌿' },
+    { id: 'initial', name: 'Monogram A', icon: '🅰️' },
   ];
 
   const updateDecorations = (updates: Partial<Decoration>) => {
