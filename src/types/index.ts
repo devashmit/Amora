@@ -12,11 +12,11 @@ export interface StickerPlacement {
 }
 
 export interface Decoration {
-  seal_type?: 'heart' | 'star' | 'moon' | 'floral' | null;
+  seal_type?: 'heart' | 'star' | 'moon' | 'floral' | 'rose' | 'olive' | 'initial' | null;
   seal_position?: 'bottom-center' | 'bottom-right';
   border_style?: 'none' | 'simple' | 'ornate' | 'floral';
   postage_stamp?: boolean;
-  envelope_style?: 'classic' | 'vintage' | 'royal' | 'blossom';
+  envelope_style?: 'classic' | 'vintage' | 'royal' | 'blossom' | 'ivory' | 'forest' | 'midnight' | 'rose' | 'charcoal' | 'parchment';
 }
 
 export interface Letter {
