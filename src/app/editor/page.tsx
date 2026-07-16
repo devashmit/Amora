@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useLetterEditor } from '@/hooks/useLetterEditor';
+import { Decoration } from '@/types';
 import { LetterCanvas } from '@/components/editor/LetterCanvas';
 import { PaperSelector } from '@/components/editor/PaperSelector';
 import { TextControls } from '@/components/editor/TextControls';
@@ -19,11 +20,13 @@ export default function EditorPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const envelopeStyles: { id: 'classic' | 'vintage' | 'royal' | 'blossom'; name: string; desc: string }[] = [
-    { id: 'classic', name: 'Classic Cream', desc: 'Elegant beige envelope with gold borders' },
-    { id: 'vintage', name: 'Vintage Kraft', desc: 'Rustic kraft paper with stamp guidelines' },
-    { id: 'royal', name: 'Royal Navy', desc: 'Embossed gold trim on deep navy' },
-    { id: 'blossom', name: 'Blossom Pink', desc: 'Delicate pastel pink with soft trim' },
+  const envelopeStyles: { id: Exclude<Decoration['envelope_style'], undefined>; name: string; desc: string }[] = [
+    { id: 'ivory', name: 'Classic Ivory', desc: 'Warm ivory cotton paper with embossed botanicals' },
+    { id: 'forest', name: 'Forest Green Linen', desc: 'Rich forest green stock with pressed fern details' },
+    { id: 'midnight', name: 'Midnight Blue Cotton', desc: 'Deep navy cotton paper with gold-pressed wildflowers' },
+    { id: 'rose', name: 'Dusty Rose', desc: 'Soft warm pink paper with pressed sakura petals' },
+    { id: 'charcoal', name: 'Charcoal Black', desc: 'Dark cotton paper with embossed lavender illustrations' },
+    { id: 'parchment', name: 'Parchment', desc: 'Pressed grain antique paper with slightly deckled edges' },
   ];
 
   const handleSealAndShare = async () => {
