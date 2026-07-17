@@ -506,7 +506,14 @@ export default function Home() {
 
               {/* Right Column: Interactive Paper Editor */}
               <div className="lg:col-span-7 flex justify-center">
-                <div className="relative w-full max-w-[500px] aspect-[4/3.2] bg-[#FCFAF7]/20 border border-[#A88756]/10 rounded-2xl p-6 shadow-editorial-md flex flex-col justify-between paper-grain">
+                <div 
+                  style={{ backgroundColor: activeMood.bgColor }}
+                  className={`relative w-full max-w-[500px] aspect-[4/3.2] border border-[#A88756]/10 rounded-2xl p-6 shadow-editorial-md flex flex-col justify-between transition-all duration-500 ${
+                    activeMood.themeName === 'Blush' ? 'paper-rose-fibers' :
+                    activeMood.themeName === 'Parchment' ? 'paper-pressed-grain' :
+                    activeMood.themeName === 'Navy' ? 'paper-charcoal-fibers' : 'paper-grain'
+                  }`}
+                >
                   {/* Subtle Fountain Pen Graphic or Border */}
                   <div className="absolute right-4 top-4 text-xs opacity-20 font-serif italic select-none">Amora Atelier</div>
                   
@@ -518,10 +525,7 @@ export default function Home() {
                     placeholder="Start writing..."
                   />
 
-                  <div className="flex justify-between items-end border-t border-black/[0.04] pt-3">
-                    <div className="w-8 h-8 opacity-80" dangerouslySetInnerHTML={{ __html: activeSticker?.svgMarkup || '' }} />
-                    <Heart className="w-4 h-4 text-[#D6707C] fill-[#D6707C]/10" />
-                  </div>
+
                 </div>
               </div>
             </motion.div>
@@ -544,7 +548,11 @@ export default function Home() {
                   animate={{ y: 0, scale: 0.92, opacity: 0.8 }}
                   transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
                   style={{ backgroundColor: activeMood.bgColor }}
-                  className="absolute inset-x-[4%] top-4 bottom-4 rounded-xl border border-black/[0.03] shadow-editorial-md p-5 flex flex-col justify-between paper-grain z-5"
+                  className={`absolute inset-x-[4%] top-4 bottom-4 rounded-xl border border-black/[0.03] shadow-editorial-md p-5 flex flex-col justify-between transition-all duration-500 z-5 ${
+                    activeMood.themeName === 'Blush' ? 'paper-rose-fibers' :
+                    activeMood.themeName === 'Parchment' ? 'paper-pressed-grain' :
+                    activeMood.themeName === 'Navy' ? 'paper-charcoal-fibers' : 'paper-grain'
+                  }`}
                 >
                   <div className="flex-grow flex items-center justify-center">
                     <p style={{ color: activeMood.textColor }} className={`${activeMood.fontClass} text-center opacity-40 select-none text-sm`}>
@@ -776,7 +784,11 @@ export default function Home() {
                   animate={envelopeOpen ? { y: -110, scale: 0.97, zIndex: 15 } : { y: 0, scale: 0.95, zIndex: 5 }}
                   transition={transitionConfig}
                   style={{ backgroundColor: activeMood.bgColor, zIndex: envelopeOpen ? 15 : 5 }}
-                  className="absolute inset-x-[4%] top-4 bottom-4 rounded-xl border border-black/[0.03] shadow-editorial-md p-5 overflow-hidden flex flex-col justify-between paper-grain"
+                  className={`absolute inset-x-[4%] top-4 bottom-4 rounded-xl border border-black/[0.03] shadow-editorial-md p-5 overflow-hidden flex flex-col justify-between transition-all duration-500 ${
+                    activeMood.themeName === 'Blush' ? 'paper-rose-fibers' :
+                    activeMood.themeName === 'Parchment' ? 'paper-pressed-grain' :
+                    activeMood.themeName === 'Navy' ? 'paper-charcoal-fibers' : 'paper-grain'
+                  }`}
                 >
                   <div className="flex justify-between items-start border-b border-black/[0.03] pb-2">
                     <span className="text-[8px] uppercase tracking-widest text-[#0C231C]/40 font-semibold">Amora Digital Stationery</span>
@@ -791,11 +803,6 @@ export default function Home() {
                     >
                       {customText || 'Compose your words...'}
                     </p>
-                  </div>
-
-                  <div className="flex justify-between items-end border-t border-black/[0.03] pt-2">
-                    <div className="w-6 h-6 opacity-80" dangerouslySetInnerHTML={{ __html: activeSticker?.svgMarkup || '' }} />
-                    <Heart className="w-3 h-3 text-[#D6707C] fill-[#D6707C]/20" />
                   </div>
                 </motion.div>
 
