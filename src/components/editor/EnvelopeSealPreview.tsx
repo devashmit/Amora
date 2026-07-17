@@ -333,7 +333,7 @@ export const EnvelopeSealPreview: React.FC<EnvelopeSealPreviewProps> = ({
             transformOrigin: 'top center',
             backgroundColor: colors.flap,
             backgroundImage: `linear-gradient(to bottom, ${colors.flap}, ${colors.flapDark})`,
-            clipPath: 'polygon(0% 0%, 100% 0%, 50% 100%)',
+            clipPath: 'polygon(0 0, 100% 0, 50% 60%)',
           }}
           className={`absolute top-0 inset-x-0 h-[60%] flex items-end justify-center pb-3 z-30 shadow-[0_4px_10px_rgba(0,0,0,0.08)] ${colors.paperTexture}`}
         >
