@@ -105,6 +105,39 @@ export const DecorationPanel: React.FC<DecorationPanelProps> = ({
           </span>
         </label>
       </div>
+
+      <hr className="border-amora-ink/5 my-2" />
+
+      {/* Floral Engravings & Prints */}
+      <div className="space-y-2">
+        <label className="text-xs text-amora-ink/60 flex items-center gap-1">
+          <Award className="w-3 h-3 text-amora-rose" />
+          <span>Paper Floral Engraving / Print</span>
+        </label>
+        <div className="grid grid-cols-3 gap-2">
+          {[
+            { id: 'none', name: 'No Print', icon: '∅' },
+            { id: 'wildflower', name: 'Wildflower', icon: '🌸' },
+            { id: 'sakura', name: 'Sakura', icon: '💮' },
+            { id: 'lavender', name: 'Lavender', icon: '🪻' },
+            { id: 'olive', name: 'Olive', icon: '🌿' },
+            { id: 'fern', name: 'Fern', icon: '🌿' },
+          ].map((f) => (
+            <button
+              key={f.id}
+              onClick={() => updateDecorations({ floral_print: f.id as any })}
+              className={`py-2 px-1 text-xs rounded border flex flex-col items-center justify-center gap-1 transition-all duration-300 ${
+                (decorations.floral_print || 'none') === f.id
+                  ? 'border-amora-rose bg-amora-rose/5 text-amora-rose font-semibold shadow-sm'
+                  : 'border-amora-ink/10 hover:border-amora-ink/20 text-amora-ink'
+              }`}
+            >
+              <span className="text-sm">{f.icon}</span>
+              <span className="text-[10px]">{f.name}</span>
+            </button>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
