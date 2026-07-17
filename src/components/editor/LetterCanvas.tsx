@@ -2,6 +2,7 @@ import React from 'react';
 import { PaperStyle, FontFamily, Decoration, StickerPlacement } from '@/types';
 import { StickerLayer } from './StickerLayer';
 import { Mail } from 'lucide-react';
+import { PressedBotanical } from '../letter/WaxSeal';
 
 interface LetterCanvasProps {
   toName: string;
@@ -109,6 +110,17 @@ export const LetterCanvas: React.FC<LetterCanvasProps> = ({
       {/* Decorative Borders */}
       {decorations.border_style && decorations.border_style !== 'none' && (
         <div className={`absolute inset-0 pointer-events-none rounded-sm ${getBorderClass()}`} />
+      )}
+
+      {/* Elegant Floral Watermark/Engraving */}
+      {decorations.floral_print && decorations.floral_print !== 'none' && (
+        <div className="absolute inset-[10%] pointer-events-none z-0 select-none flex items-center justify-center opacity-10 mix-blend-multiply">
+          <PressedBotanical
+            type={decorations.floral_print}
+            className="w-[280px] h-[280px] md:w-[360px] md:h-[360px]"
+            style={{ color: 'currentColor' }}
+          />
+        </div>
       )}
 
       {/* Postage Stamp */}
