@@ -17,6 +17,7 @@ export interface Decoration {
   border_style?: 'none' | 'simple' | 'ornate' | 'floral';
   postage_stamp?: boolean;
   envelope_style?: 'classic' | 'vintage' | 'royal' | 'blossom' | 'ivory' | 'forest' | 'midnight' | 'rose' | 'charcoal' | 'parchment';
+  floral_print?: 'none' | 'lavender' | 'olive' | 'sakura' | 'fern' | 'wildflower';
 }
 
 export interface Letter {
