@@ -24,6 +24,7 @@ export const CreateLetterSchema = z.object({
     border_style: z.enum(['none', 'simple', 'ornate', 'floral']).optional(),
     postage_stamp: z.boolean().optional(),
     envelope_style: z.enum(['classic', 'vintage', 'royal', 'blossom', 'ivory', 'forest', 'midnight', 'rose', 'charcoal', 'parchment']).optional(),
+    floral_print: z.enum(['none', 'lavender', 'olive', 'sakura', 'fern', 'wildflower']).optional(),
   }).default({}),
   is_public: z.boolean().default(false),
 });
