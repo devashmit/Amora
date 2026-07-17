@@ -328,5 +328,6 @@ export const WaxSeal: React.FC<WaxSealProps> = ({ type, className = '', onClick,
       </svg>
     </div>
   );
+};
 
 
