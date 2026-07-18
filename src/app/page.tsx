@@ -799,9 +799,9 @@ export default function Home() {
                 {/* INTERNAL SLIDING STATIONERY LETTER */}
                 <motion.div
                   initial={{ y: 0, scale: 0.95, z: 2 }}
-                  animate={envelopeOpen ? { y: -110, scale: 0.97, zIndex: 15, z: 2 } : { y: 0, scale: 0.95, zIndex: 5, z: 2 }}
+                  animate={envelopeOpen ? { y: -110, scale: 0.97, zIndex: 22, z: 22 } : { y: 0, scale: 0.95, zIndex: 5, z: 2 }}
                   transition={transitionConfig}
-                  style={{ backgroundColor: activeMood.bgColor, zIndex: envelopeOpen ? 15 : 5 }}
+                  style={{ backgroundColor: activeMood.bgColor, zIndex: envelopeOpen ? 22 : 5 }}
                   className={`absolute inset-x-[4%] top-4 bottom-4 rounded-xl border border-black/[0.03] shadow-editorial-md p-5 overflow-hidden flex flex-col justify-between transition-all duration-500 ${
                     activeMood.themeName === 'Blush' ? 'paper-rose-fibers' :
                     activeMood.themeName === 'Parchment' ? 'paper-pressed-grain' :
