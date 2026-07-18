@@ -150,6 +150,15 @@ export const EnvelopeReveal: React.FC<EnvelopeRevealProps> = ({
               className={`absolute inset-0 rounded-xl overflow-hidden z-10 border border-white/5 ${colors.paperTexture}`}
             >
               <div className="absolute inset-x-0 bottom-0 top-1/3 bg-gradient-to-t from-black/12 to-transparent" />
+              
+              {/* EMBOSSED BOTANICAL DETAILS */}
+              <div className="absolute inset-[15%] pointer-events-none select-none flex items-center justify-center opacity-40">
+                <PressedBotanical 
+                  type={colors.botanicalType} 
+                  className="w-48 h-48"
+                  style={{ color: colors.text }}
+                />
+              </div>
             </div>
 
             {/* PHYSICAL REALISM: THE MASKED LETTER POCKET */}
@@ -295,14 +304,6 @@ export const EnvelopeReveal: React.FC<EnvelopeRevealProps> = ({
               </svg>
             </div>
 
-            {/* EMBOSSED BOTANICAL DETAILS */}
-            <div className="absolute inset-[15%] pointer-events-none z-22 select-none flex items-center justify-center opacity-40">
-              <PressedBotanical 
-                type={colors.botanicalType} 
-                className="w-48 h-48"
-                style={{ color: colors.text }}
-              />
-            </div>
 
             {/* CALLIGRAPHY COVER TEXT */}
             {!isOpen && (
