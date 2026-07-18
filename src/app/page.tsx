@@ -249,7 +249,11 @@ export default function Home() {
 
                 {/* Right Column: Envelope Preview with Interactive hover seal */}
                 <div className="lg:col-span-7 flex justify-center">
-                  <div className="relative w-[340px] sm:w-[420px] h-[230px] sm:h-[280px] perspective-[1200px] group cursor-pointer" onClick={() => setStep('write')}>
+                  <div 
+                    style={{ transformStyle: 'preserve-3d' }}
+                    className="relative w-[340px] sm:w-[420px] h-[230px] sm:h-[280px] perspective-[1200px] group cursor-pointer" 
+                    onClick={() => setStep('write')}
+                  >
                     
                     {/* Floating flowers next to envelope */}
                     <div className="absolute -left-20 top-1/2 -translate-y-1/2 w-28 pointer-events-none select-none z-30 opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 hidden sm:block">
@@ -263,6 +267,7 @@ export default function Home() {
                     <div 
                       style={{ 
                         zIndex: 26,
+                        transform: 'translateZ(14px)',
                         filter: envelopeThemeKey === 'royal' 
                           ? 'brightness(1.5) sepia(0.8) hue-rotate(-10deg) saturate(1.2) opacity(0.55)' 
                           : 'sepia(0.95) brightness(0.4) contrast(1.3) saturate(0.8) opacity(0.6)' 
@@ -280,6 +285,7 @@ export default function Home() {
                     <div 
                       style={{ 
                         zIndex: 26,
+                        transform: 'translateZ(14px)',
                         filter: envelopeThemeKey === 'royal' 
                           ? 'brightness(1.5) sepia(0.8) hue-rotate(-10deg) saturate(1.2) opacity(0.55)' 
                           : 'sepia(0.95) brightness(0.4) contrast(1.3) saturate(0.8) opacity(0.6)' 
@@ -295,13 +301,13 @@ export default function Home() {
 
                     {/* Envelope Back Cover */}
                     <div 
-                      style={{ backgroundColor: envTheme.back, zIndex: 1 }}
+                      style={{ backgroundColor: envTheme.back, zIndex: 1, transform: 'translateZ(1px)' }}
                       className="absolute inset-0 rounded-2xl border border-black/[0.02] overflow-hidden shadow-editorial-lg paper-grain"
                     />
 
                     {/* Address Calligraphy */}
                     <div 
-                      style={{ color: envTheme.text, zIndex: 26 }} 
+                      style={{ color: envTheme.text, zIndex: 26, transform: 'translateZ(14px)' }} 
                       className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center"
                     >
                       <span className="text-[8px] tracking-[0.25em] uppercase opacity-40 font-semibold">Hand Delivered For</span>
@@ -315,6 +321,7 @@ export default function Home() {
                       className="absolute top-6 right-6 w-14 h-16 bg-[#FFFDF9] shadow-sm border border-[#A88756]/15 flex flex-col p-1"
                       style={{
                         zIndex: 26,
+                        transform: 'translateZ(14px)',
                         clipPath: 'polygon(0% 0%, 5% 5%, 10% 0%, 15% 5%, 20% 0%, 25% 5%, 30% 0%, 35% 5%, 40% 0%, 45% 5%, 50% 0%, 55% 5%, 60% 0%, 65% 5%, 70% 0%, 75% 5%, 80% 0%, 85% 5%, 90% 0%, 95% 5%, 100% 0%, 95% 10%, 100% 20%, 95% 30%, 100% 40%, 95% 50%, 100% 60%, 95% 70%, 100% 80%, 95% 90%, 100% 100%, 90% 95%, 80% 100%, 70% 95%, 60% 100%, 50% 95%, 40% 100%, 30% 95%, 20% 100%, 10% 95%, 0% 100%, 5% 90%, 0% 80%, 5% 70%, 0% 60%, 5% 50%, 0% 40%, 5% 30%, 0% 20%, 5% 10%)'
                       }}
                     >
@@ -338,14 +345,15 @@ export default function Home() {
                         height: '60%',
                         borderTopLeftRadius: '1rem',
                         borderTopRightRadius: '1rem',
-                        zIndex: 24
+                        zIndex: 24,
+                        transform: 'translateZ(12px)'
                       }}
                       className="paper-grain"
                     />
 
                     {/* Front Flap Diagonals */}
                     <div 
-                      style={{ zIndex: 20 }}
+                      style={{ zIndex: 20, transform: 'translateZ(10px)' }}
                       className="absolute inset-0 pointer-events-none"
                     >
                       <svg className="w-full h-full filter drop-shadow-[0_-3px_8px_rgba(0,0,0,0.01)]" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -356,7 +364,10 @@ export default function Home() {
                     </div>
 
                     {/* RUSTIC TWINE WRAP */}
-                    <div className="absolute inset-0 pointer-events-none z-25">
+                    <div 
+                      style={{ zIndex: 25, transform: 'translateZ(13px)' }}
+                      className="absolute inset-0 pointer-events-none"
+                    >
                       {/* Horizontal twine */}
                       <div className="absolute top-1/2 left-0 right-0 h-[4px] bg-[#8A6644] opacity-85 shadow-[0_2px_4px_rgba(0,0,0,0.15)]" style={{ transform: 'translateY(-50%)', backgroundImage: "repeating-linear-gradient(45deg, #745133, #745133 4px, #8A6644 4px, #8A6644 8px)" }} />
                       {/* Vertical twine */}
@@ -367,6 +378,7 @@ export default function Home() {
                     <div 
                       style={{ 
                         zIndex: 28,
+                        transform: 'translateZ(16px)',
                         filter: 'drop-shadow(0 4px 8px rgba(12,35,28,0.3))'
                       }}
                       className="absolute left-1/2 top-[60%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-none"
