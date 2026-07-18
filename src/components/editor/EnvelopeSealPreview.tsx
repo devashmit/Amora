@@ -289,6 +289,15 @@ export const EnvelopeSealPreview: React.FC<EnvelopeSealPreviewProps> = ({
           >
             Amora
           </div>
+
+          {/* EMBOSSED BOTANICAL ILLUSTRATION */}
+          <div className="absolute inset-[15%] pointer-events-none select-none flex items-center justify-center opacity-40">
+            <PressedBotanical 
+              type={colors.botanicalType} 
+              className="w-48 h-48"
+              style={{ color: colors.text }}
+            />
+          </div>
         </div>
 
         {/* PHYSICAL REALISM: THE MASKED POCKET CONTAINER */}
@@ -396,14 +405,6 @@ export const EnvelopeSealPreview: React.FC<EnvelopeSealPreviewProps> = ({
           </svg>
         </div>
 
-        {/* EMBOSSED BOTANICAL ILLUSTRATION */}
-        <div className="absolute inset-[15%] pointer-events-none z-22 select-none flex items-center justify-center opacity-40">
-          <PressedBotanical 
-            type={colors.botanicalType} 
-            className="w-48 h-48"
-            style={{ color: colors.text }}
-          />
-        </div>
 
         {/* ADDRESSED RECIPIENT LAYOUT */}
         {animationStage === 'sealed' && (
