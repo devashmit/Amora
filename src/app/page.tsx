@@ -704,12 +704,16 @@ export default function Home() {
               </div>
 
               {/* Envelope Component Container */}
-              <div className="relative w-[340px] sm:w-[420px] h-[230px] sm:h-[280px] perspective-[1200px]">
+              <div 
+                style={{ transformStyle: 'preserve-3d' }}
+                className="relative w-[340px] sm:w-[420px] h-[230px] sm:h-[280px] perspective-[1200px]"
+              >
 
                 {/* Left flower stem - imprinted on bottom-left corner of envelope face */}
                 <div 
                   style={{ 
                     zIndex: 26,
+                    transform: 'translateZ(14px)',
                     filter: envelopeThemeKey === 'royal' 
                       ? 'brightness(1.5) sepia(0.8) hue-rotate(-10deg) saturate(1.2) opacity(0.55)' 
                       : 'sepia(0.95) brightness(0.4) contrast(1.3) saturate(0.8) opacity(0.6)' 
@@ -727,6 +731,7 @@ export default function Home() {
                 <div 
                   style={{ 
                     zIndex: 26,
+                    transform: 'translateZ(14px)',
                     filter: envelopeThemeKey === 'royal' 
                       ? 'brightness(1.5) sepia(0.8) hue-rotate(-10deg) saturate(1.2) opacity(0.55)' 
                       : 'sepia(0.95) brightness(0.4) contrast(1.3) saturate(0.8) opacity(0.6)' 
@@ -743,8 +748,8 @@ export default function Home() {
                 {/* Physical Falling Pressed Flower (Emerges only on opening sequence) */}
                 {step !== 'recipient' && (
                   <motion.div
-                    initial={{ y: -20, rotate: 0, opacity: 0 }}
-                    animate={{ y: 220, rotate: 180, opacity: [0, 1, 1, 0] }}
+                    initial={{ y: -20, rotate: 0, opacity: 0, z: 30 }}
+                    animate={{ y: 220, rotate: 180, opacity: [0, 1, 1, 0], z: 30 }}
                     transition={{ duration: 1.8, ease: 'easeOut' }}
                     style={{ zIndex: 30 }}
                     className="absolute left-[35%] w-12 h-12 pointer-events-none select-none"
@@ -755,7 +760,7 @@ export default function Home() {
 
                 {/* ENVELOPE BACK COVER */}
                 <div 
-                  style={{ backgroundColor: envTheme.back, zIndex: 1 }}
+                  style={{ backgroundColor: envTheme.back, zIndex: 1, transform: 'translateZ(1px)' }}
                   className="absolute inset-0 rounded-2xl border border-black/[0.02] overflow-hidden shadow-editorial-lg paper-grain"
                 >
                   <div className="absolute inset-x-0 bottom-0 top-1/3 bg-gradient-to-t from-black/[0.04] to-transparent pointer-events-none" />
@@ -763,7 +768,7 @@ export default function Home() {
 
                 {/* ADDRESS CALLIGRAPHY */}
                 <div 
-                  style={{ color: envTheme.text, zIndex: 26 }} 
+                  style={{ color: envTheme.text, zIndex: 26, transform: 'translateZ(14px)' }} 
                   className={`absolute inset-0 flex flex-col items-center justify-center p-8 text-center transition-opacity duration-500 ${
                     envelopeOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'
                   }`}
@@ -781,6 +786,7 @@ export default function Home() {
                   }`}
                   style={{
                     zIndex: 26,
+                    transform: 'translateZ(14px)',
                     clipPath: 'polygon(0% 0%, 5% 5%, 10% 0%, 15% 5%, 20% 0%, 25% 5%, 30% 0%, 35% 5%, 40% 0%, 45% 5%, 50% 0%, 55% 5%, 60% 0%, 65% 5%, 70% 0%, 75% 5%, 80% 0%, 85% 5%, 90% 0%, 95% 5%, 100% 0%, 95% 10%, 100% 20%, 95% 30%, 100% 40%, 95% 50%, 100% 60%, 95% 70%, 100% 80%, 95% 90%, 100% 100%, 90% 95%, 80% 100%, 70% 95%, 60% 100%, 50% 95%, 40% 100%, 30% 95%, 20% 100%, 10% 95%, 0% 100%, 5% 90%, 0% 80%, 5% 70%, 0% 60%, 5% 50%, 0% 40%, 5% 30%, 0% 20%, 5% 10%)'
                   }}
                 >
@@ -792,8 +798,8 @@ export default function Home() {
 
                 {/* INTERNAL SLIDING STATIONERY LETTER */}
                 <motion.div
-                  initial={{ y: 0, scale: 0.95 }}
-                  animate={envelopeOpen ? { y: -110, scale: 0.97, zIndex: 15 } : { y: 0, scale: 0.95, zIndex: 5 }}
+                  initial={{ y: 0, scale: 0.95, z: 2 }}
+                  animate={envelopeOpen ? { y: -110, scale: 0.97, zIndex: 15, z: 2 } : { y: 0, scale: 0.95, zIndex: 5, z: 2 }}
                   transition={transitionConfig}
                   style={{ backgroundColor: activeMood.bgColor, zIndex: envelopeOpen ? 15 : 5 }}
                   className={`absolute inset-x-[4%] top-4 bottom-4 rounded-xl border border-black/[0.03] shadow-editorial-md p-5 overflow-hidden flex flex-col justify-between transition-all duration-500 ${
@@ -835,13 +841,13 @@ export default function Home() {
                     zIndex: envelopeOpen ? 2 : 24
                   }}
                   className="paper-grain"
-                  animate={envelopeOpen ? { rotateX: -180, zIndex: 2 } : { rotateX: 0, zIndex: 24 }}
+                  animate={envelopeOpen ? { rotateX: -180, zIndex: 2, z: 0 } : { rotateX: 0, zIndex: 24, z: 12 }}
                   transition={transitionConfig}
                 />
 
                 {/* FRONT FLAP DIAGONALS */}
                 <div 
-                  style={{ zIndex: 20 }}
+                  style={{ zIndex: 20, transform: 'translateZ(10px)' }}
                   className="absolute inset-0 pointer-events-none"
                 >
                   <svg className="w-full h-full filter drop-shadow-[0_-3px_8px_rgba(0,0,0,0.01)]" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -857,7 +863,7 @@ export default function Home() {
                     zIndex: envelopeOpen ? 3 : 28,
                     filter: 'drop-shadow(0 4px 8px rgba(12,35,28,0.3))'
                   }}
-                  animate={waxSealBroken ? { scale: 0, opacity: 0 } : { scale: 1, opacity: 1 }}
+                  animate={waxSealBroken ? { scale: 0, opacity: 0, z: 0 } : { scale: 1, opacity: 1, z: 16 }}
                   transition={{ duration: 0.4 }}
                   className="absolute left-1/2 top-[60%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center cursor-pointer"
                   onClick={handleWaxSealClick}
